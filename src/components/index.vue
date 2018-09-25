@@ -1,16 +1,54 @@
 <template>
-<div class="wrapper">
-  <h1>index</h1>
-  <div class="wgt-home" id="page-one">
-    <h1>辨色测试</h1>
-    <p>找出所有色块里颜色不同一个</p>
-    <a href="javascript:;" id="start" class="">开始挑战</a>
+  <div class="wrapper">
+    <div class="main">
+      <div class="show">
+        <img src="" alt="">
+      </div>
+      <div class="btn">
+        <input type="file"  value="选择图片" class="select">
+        <input type="button" value="上传图片" class="upload">
+      </div>
+    </div>
+    <div class="preview">
+      <span>预览区</span>
+    </div>
   </div>
-</div>
 </template>
 <script>
 export default {
 }
 </script>
 <style lang='stylus' scoped>
+.wrapper
+  display flex
+  .main
+    width 500px
+    height 400px
+    border 1px solid blue 
+    margin-right 10px 
+    .show
+      width 100%
+      height 80%
+      border 1px solid pink
+    .btn
+      display flex
+      height 20%
+      justify-content center
+      align-items center
+      .select
+        display block
+  .preview
+    width 150px
+    height 120px
+    border 1px solid blue
+    position relative
+    span 
+      position absolute 
+      bottom -25px
+      left 0
+      font-size 10px
+      color #fff
+      background gray
+      padding 3px 10px
+      border-radius 10px
 </style>

@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <Index />
+    <!-- <Index /> -->
+    <Button />
   </div>
 </template>
 
 <script>
 import Index from './components/index.vue'
+import Button from './components/Button.vue'
 
 export default {
   name: 'app',
   components: {
-    Index
+    Index,
+    Button
   }
 }
 </script>
