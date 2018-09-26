@@ -8,29 +8,21 @@
 </template>
 <script>
 export default {
-  data(){
-    return{
-      msg:'选择文件'
+  props:{
+    flag:{
+      type:Boolean,
+      default:true
     }
   },
-  mounted(){
-    this.test()
-  },
-
-  methods:{
-    test(){
-      let lab = this.$refs.lable
-      lab.addEventListener('click',() => {
-        console.log('aaa')
-      })
+  computed:{
+    msg:function(){
+      return this.flag ? '重新选择' : '选择文件'
     }
   }
 }
 </script>
 <style lang='stylus' scoped>
 .wrapper
-  // display flex
-  border 1px solid red
   position relative
   #inputfile
     position absolute
