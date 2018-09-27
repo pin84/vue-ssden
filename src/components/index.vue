@@ -24,6 +24,7 @@ export default {
   },
   mounted(){
     this.getdata()
+    this.b()
   },
 
   methods:{
@@ -39,6 +40,14 @@ export default {
         
       })
       
+    },
+
+    a(){
+      console.log('a');
+      
+    },
+    b(){
+      this.$options.methods.a()
     }
   }
 }
