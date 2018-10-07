@@ -2,33 +2,34 @@
   <div id="app">
     <!-- <Index /> -->
     <!-- <FileBtn /> -->
-    <Abc />
+    <Book />
   </div>
 </template>
 
 <script>
 import Index from './components/index.vue'
 import FileBtn from './components/FileBtn.vue'
-import Abc from './components/abc'
+import Book from './components/Book'
 
 export default {
   name: 'app',
   components: {
     Index,
     FileBtn,
-    Abc
+    Book
   }
 }
 </script>
 
 <style>
+@import url('../public/css/myreset.css');
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
-  margin-top: 60px;
+  /* margin-top: 60px; */
 }
 li{
   list-style: none;

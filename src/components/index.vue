@@ -24,31 +24,24 @@ export default {
   },
   mounted(){
     this.getdata()
-    this.b()
   },
 
   methods:{
     getdata(){
-      let upload = this.$refs.preview
+      // let upload = this.$refs.preview
       let imgForm = this.$refs.fileBtn.$el
 
-      imgForm.addEventListener('change',(e)=>{
+      imgForm.addEventListener('change',()=>{
         let formData = new FormData()
         formData.append('userfile',imgForm.firstChild.files[0])
 
-        console.log(formData.getAll('userfile'));
+        // console.log(formData.getAll('userfile'));
         
       })
       
     },
 
-    a(){
-      console.log('a');
-      
-    },
-    b(){
-      this.$options.methods.a()
-    }
+    
   }
 }
 </script>
