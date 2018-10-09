@@ -14,6 +14,7 @@
 
 
 <script>
+import axios from 'axios'
 import Audio from './Audio'
 export default {
   data() {
@@ -44,7 +45,7 @@ export default {
       let audioBoxsArr = Array.from(document.querySelectorAll('.audiobox'))
       console.log(audioBoxsArr);
 
-      audioBoxsArr.forEach((item, i) => {
+      audioBoxsArr.forEach((item) => {
         item.addEventListener('click', (e) => {
           let audio = e.target.children[0]
           if (audio.paused) {
@@ -66,21 +67,25 @@ export default {
           this.parentNode.className = 'audiobox start'
         })
       })
-
-
     },
 
 
     getData() {
-      fetch('http://localhost:8081/web/dfbook/findAll')
-        .then((response) => {
-          return response.json()
+      axios.get('http://192.168.3.107:8081/web/dfbook/findAll').then((myJson)=> {
+          this.contents = myJson.data
+          console.log(this.contents.data);
         })
-        .then((myJson) => {
-          this.contents = myJson
-          console.log(this.contents);
-        })
+
+        // fetch('http://192.168.3.107:8081/web/dfbook/findAll').then((response)=>{
+        //   return response.json()
+        // })
+        // .then((myJson)=>{
+        //   this.contents = myJson
+        // })
     }
+
+
+
   }
 
 }
