@@ -7,5 +7,8 @@ promise.polyfill()
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App)
+  render: h => h(App),
+  data: {
+    eventHub: new Vue()
+  }
 }).$mount('#app')

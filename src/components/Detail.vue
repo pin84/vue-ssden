@@ -34,25 +34,41 @@ export default {
   },
 
   mounted() {
-    this.getData()
-    this.resetAudioBoxImg()
+    this.getData(1)
+    this.$root.eventHub.$on('getData', (chapter) => {
+      this.getData(chapter)
+    })
   },
-  updated(){
+  updated() {
     this._play()
+    this.resetAudioBoxImg()
+    this._p()
   },
   methods: {
+
+    _p() {
+      let audio = Array.from(document.querySelectorAll('.content'))
+
+
+      audio.forEach((item, i) => {
+        item.addEventListener('click', (e) => {
+          if (e.target.className === 'audiobox') {
+            console.log(e.target);
+          }
+        })
+      })
+
+    },
     _play() {
       let audioBoxsArr = Array.from(document.querySelectorAll('.audiobox'))
-      console.log(audioBoxsArr);
-
       audioBoxsArr.forEach((item) => {
         item.addEventListener('click', (e) => {
           let audio = e.target.children[0]
           if (audio.paused) {
-            audio.play()
+            // audio.play()
             e.target.className = 'audiobox stop'
           } else {
-            audio.pause()
+            // audio.pause()
             // audio.currentTime = 0.0
             e.target.className = 'audiobox start'
           }
@@ -64,24 +80,27 @@ export default {
       let audios = Array.from(document.querySelectorAll('Audio'))
       audios.forEach((item, i) => {
         item.addEventListener('ended', function () {
+          console.log('play--ended');
           this.parentNode.className = 'audiobox start'
         })
+
       })
     },
 
 
-    getData() {
-      axios.get('http://192.168.3.107:8081/web/dfbook/findAll').then((myJson)=> {
+    getData(chapter) {
+      axios.post('http://192.168.3.107:8081/web/dfbook/findAll',
+        { chapter: chapter })
+        .then((myJson) => {
           this.contents = myJson.data
-          console.log(this.contents.data);
         })
-
-        // fetch('http://192.168.3.107:8081/web/dfbook/findAll').then((response)=>{
-        //   return response.json()
-        // })
-        // .then((myJson)=>{
-        //   this.contents = myJson
-        // })
+      this._play()
+      // fetch('http://192.168.3.107:8081/web/dfbook/findAll').then((response)=>{
+      //   return response.json()
+      // })
+      // .then((myJson)=>{
+      //   this.contents = myJson
+      // })
     }
 
 
