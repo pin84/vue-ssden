@@ -1,13 +1,13 @@
 <template>
-  <div class="wrapper">
+  <div class="wrapper" ref="detail">
     <h1 class="title">{{title}}</h1>
-    <div class="content" v-for="(item,index) in contents" :key="index">
+    <div class="content" v-for="(item,index) in contents" :key="index" ref="content">
       <span class="text">
         {{item.text}}
       </span>
-      <span class="audiobox start" ref="audiobox">
-        <Audio ref="audio" :mp3_name='item.mp3' />
-      </span>
+      <div class="audio" ref="audiobox">
+        <Audio :mp3_name='item.mp3' />
+      </div>
     </div>
   </div>
 </template>
@@ -38,52 +38,55 @@ export default {
     this.$root.eventHub.$on('getData', (chapter) => {
       this.getData(chapter)
     })
+    //给侧边导航用
+    this.$root.eventHub.$on('getDataByTitle', (title) => {
+      this.getDataByTitle(title)
+    })
   },
   updated() {
     this._play()
-    this.resetAudioBoxImg()
-    this._p()
+    // this.resetAudioBoxImg()
+    // this._test()
   },
   methods: {
+    _test() {
+      let detail = this.$refs.detail
+      detail.addEventListener('click', function (e) {
+        console.log(e.target);
 
-    _p() {
-      let audio = Array.from(document.querySelectorAll('.content'))
-
-
-      audio.forEach((item, i) => {
-        item.addEventListener('click', (e) => {
-          if (e.target.className === 'audiobox') {
-            console.log(e.target);
-          }
-        })
-      })
-
+      }, false)
     },
     _play() {
-      let audioBoxsArr = Array.from(document.querySelectorAll('.audiobox'))
-      audioBoxsArr.forEach((item) => {
-        item.addEventListener('click', (e) => {
-          let audio = e.target.children[0]
-          if (audio.paused) {
-            // audio.play()
-            e.target.className = 'audiobox stop'
-          } else {
-            // audio.pause()
-            // audio.currentTime = 0.0
-            e.target.className = 'audiobox start'
-          }
-        })
-      })
+      let detail = this.$refs.detail
+       detail.addEventListener('click',(e)=>{
+         let target = e.target
+         if(target.className === 'audio'){
+          console.log(e.target.children[0]);
+          e.target.children[0].play()
+         }
+       })
+      // audioBoxsArr.forEach((item,i) => {
+        
+        // item.addEventListener('touchend', function() {
+        // console.log(this.children[0]);
+        //   if (this.children[0].paused) {
+        //     this.children[0].play()
+        //     this.className += ' audiobox stop'
+        //   } else {
+        //     this.children[0].pause()
+        //     this.children[0].currentTime = 0.0
+        //     this.className += ' audiobox start'
+        //   }
+        // },false)
+      // })
     },
 
     resetAudioBoxImg() {
-      let audios = Array.from(document.querySelectorAll('Audio'))
+      let audios = this.$refs.audio
       audios.forEach((item, i) => {
-        item.addEventListener('ended', function () {
-          console.log('play--ended');
+        item.$el.addEventListener('ended', function () {
           this.parentNode.className = 'audiobox start'
         })
-
       })
     },
 
@@ -93,16 +96,18 @@ export default {
         { chapter: chapter })
         .then((myJson) => {
           this.contents = myJson.data
+          // console.log(this.contents);
         })
-      this._play()
-      // fetch('http://192.168.3.107:8081/web/dfbook/findAll').then((response)=>{
-      //   return response.json()
-      // })
-      // .then((myJson)=>{
-      //   this.contents = myJson
-      // })
-    }
+      // this._play()
+    },
 
+    getDataByTitle(title) {
+      axios.post('http://192.168.3.107:8081/web/dfbook/getDataByTitle',
+        { title: title })
+        .then((response) => {
+          this.contents = response.data
+        })
+    }
 
 
   }
@@ -124,10 +129,14 @@ export default {
     .text, 
       display inline-block
       line-height 24px
-    .audiobox
+    .audio
       display inline-block
       width 24px
       height 24px
+      padding 10px 
+      border 1px solid red
+      background url(../assets/audio.png) no-repeat center
+      z-index 9999
       &.start
         background url(../assets/audio.png) no-repeat center
       &.stop

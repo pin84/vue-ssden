@@ -1,8 +1,8 @@
 <template>
 
-    <audio autoplay ref="audio">
-      <source :src="require('../assets/mp3/'+mp3_name+'.mp3')">
-    </audio>
+  <audio ref="audio">
+    <source :src="require('../assets/mp3/'+mp3_name+'.mp3')">
+  </audio>
 </template>
 <script>
 export default {
@@ -19,6 +19,10 @@ export default {
 
   mounted() {
     this._playa()
+    this.$root.eventHub.$on('aaa', () => {
+      console.log('aaaaaaaaaa');
+
+    })
   },
 
   methods: {

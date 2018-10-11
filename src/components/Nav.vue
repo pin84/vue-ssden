@@ -4,65 +4,10 @@
     <ul class="nav">
       <li class="preview">目录</li>
     </ul>
-    <!-- <ul class="list" v-for="(item,index) in titles" :key="index"> -->
-    <ul class="list">
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>1</li>
-      <li>2222222</li>
+    <ul class="list" ref="list">
+      <li v-for="(item,index) in titles" :key="index" >
+        {{item.title}}
+      </li>
     </ul>
   </div>
 </template>
@@ -77,14 +22,36 @@ export default {
   mounted() {
     this.initData()
   },
+  updated(){
+    this.toDetailPage()
+
+  },
 
   methods: {
+    toDetailPage(){
+      let list = this.$refs.list
+      list.addEventListener('touchstart',(e)=>{
+        if(e.target.tagName === 'LI'){
+          e.target.style.background = '#FFCC00'
+        }
+      })
+      list.addEventListener('touchend',(e)=>{
+        if(e.target.tagName === 'LI'){
+          e.target.style.background = ''
+          this.$root.eventHub.$emit('getDataByTitle',e.target.innerText)
+        }
+      })
+      
+    },
+
     initData() {
       axios.get('http://192.168.3.107:8081/web/dfbook/findBookPreview').then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.titles = response.data
       })
     }
+
+
   }
 }
 </script>
@@ -100,20 +67,21 @@ export default {
     font-size 18px
     padding-top 10px
   .nav .preview
-    padding 10px 0
+    padding 10px 0 0 10px
     box-sizing border-box
     border-bottom 1px solid #CCCCCC
   .list
     padding 10px
     box-sizing border-box
     position fixed
-    width 99%
-    top 86px
+    width 97%
+    top 66px
     bottom 0
     overflow-y scroll
     overflow-x hidden
     li
-      padding 5px 0
+      padding 5px
+      border-bottom 1px solid #ccc
       &:first-child
         padding-top 10px
 

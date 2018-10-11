@@ -1,8 +1,8 @@
 <template>
-  <div class="wrapper" ref="wrapper">
+  <div class="book" ref="wrapper">
     <Detail  ref="detail"/>
     <PageToggle />
-    <Nav  class="nav" ref="preview"/>
+    <!-- <Nav  class="nav" ref="preview"/> -->
   </div>
 </template>
 <script>
@@ -17,7 +17,7 @@ export default {
     Nav
   },
   mounted() {
-    this.toggleNav()
+    // this.toggleNav()
   },
 
   methods:{
@@ -26,10 +26,7 @@ export default {
       let wrapper = this.$refs.wrapper,
       preview = this.$refs.preview.$el
       wrapper.addEventListener('click',(e)=>{
-        console.log( this.$refs.detail);
-        console.log( wrapper);
-        
-        if(flag){
+        if(flag && e.target.className.split(' ')[0] !== 'audiobox'){
           preview.style.transform = `translateX(0%)`
           flag = false
         } else {
@@ -38,14 +35,19 @@ export default {
         }
       })
     }
+
+
   }
 
 }
 </script>
 <style lang='stylus' scoped>
-.wrapper
+.book
   padding 5px
   position relative
+  height 100vh
+  box-sizing border-box
+  // border 1px solid red
   .nav
     position fixed
     top 0
