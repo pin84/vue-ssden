@@ -59,24 +59,28 @@ export default {
     _play(e) {
       let target = e.target
       let audio = target.children[0]
-
+      let flag = true
       let audios = Array.from(document.querySelectorAll('Audio'))
       audios.forEach((item) => {
         item.pause()
         item.currentTime = 0.0
-        item.parentNode.className = 'audio start'
+        // target.className = 'audio start'
       })
 
       if (target.className.split(' ')[0] === 'audio') {
-        if (audio.paused) {
+        console.log('audio',flag);
+        
+        if (flag) {
           audio.play()
           target.className = 'audio stop'
+          flag = false
         } else {
-          console.log('paused');
-          audio.pause()
-          audio.currentTime = 0.0
+          console.log('false');
+          
           target.className = 'audio start'
         }
+
+
       }
     },
 
