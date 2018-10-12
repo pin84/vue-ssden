@@ -1,7 +1,7 @@
 <template>
-  <div class="wrapper" ref="detail">
+  <div id="wrapper" class="wrapper" ref="detail">
     <h1 class="title">{{title}}</h1>
-    <div class="content" v-for="(item,index) in contents" :key="index" ref="content">
+    <div class="content" v-for="(item,index) in contents" :key="index" ref="content" @click="_play">
       <span class="text">
         {{item.text}}
       </span>
@@ -34,7 +34,7 @@ export default {
   },
 
   mounted() {
-    this.getData(1)
+    this.getData(3)
     this.$root.eventHub.$on('getData', (chapter) => {
       this.getData(chapter)
     })
@@ -44,7 +44,7 @@ export default {
     })
   },
   updated() {
-    this._play()
+    // this._play()
     // this.resetAudioBoxImg()
     // this._test()
   },
@@ -56,29 +56,28 @@ export default {
 
       }, false)
     },
-    _play() {
-      let detail = this.$refs.detail
-       detail.addEventListener('click',(e)=>{
-         let target = e.target
-         if(target.className === 'audio'){
-          console.log(e.target.children[0]);
-          e.target.children[0].play()
-         }
-       })
-      // audioBoxsArr.forEach((item,i) => {
-        
-        // item.addEventListener('touchend', function() {
-        // console.log(this.children[0]);
-        //   if (this.children[0].paused) {
-        //     this.children[0].play()
-        //     this.className += ' audiobox stop'
-        //   } else {
-        //     this.children[0].pause()
-        //     this.children[0].currentTime = 0.0
-        //     this.className += ' audiobox start'
-        //   }
-        // },false)
-      // })
+    _play(e) {
+      let target = e.target
+      let audio = target.children[0]
+
+      let audios = Array.from(document.querySelectorAll('Audio'))
+      audios.forEach((item) => {
+        item.pause()
+        item.currentTime = 0.0
+        item.parentNode.className = 'audio start'
+      })
+
+      if (target.className.split(' ')[0] === 'audio') {
+        if (audio.paused) {
+          audio.play()
+          target.className = 'audio stop'
+        } else {
+          console.log('paused');
+          audio.pause()
+          audio.currentTime = 0.0
+          target.className = 'audio start'
+        }
+      }
     },
 
     resetAudioBoxImg() {
@@ -133,8 +132,6 @@ export default {
       display inline-block
       width 24px
       height 24px
-      padding 10px 
-      border 1px solid red
       background url(../assets/audio.png) no-repeat center
       z-index 9999
       &.start

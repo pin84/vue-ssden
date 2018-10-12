@@ -1,8 +1,8 @@
 <template>
-  <ul class="wrapper">
-    <li class="preview" ref="pre" @click="toPre">上一篇</li>
-    <li class="next" ref="next" @click="toNext">下一篇</li>
-  </ul>
+  <div class="wrapper">
+    <input class="preview" ref="pre" @click="toPre" value="上一篇" />
+    <input class="next" ref="next" @click="toNext" value="下一篇" />
+  </div>
 </template>
 
 
@@ -11,11 +11,13 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      chapter: 1,
+      chapter: 3,
       countData:0
     }
   },
   mounted() {
+    console.log(this.chapter);
+    
     this.initData()
   },
 
@@ -28,29 +30,24 @@ export default {
     },
 
     toPre() {
-      if (this.chapter === this.countData) {
-        this.chapter = 4
-      }
-      this.$refs.next.style.background = '#99CCCC'
-      this.$root.eventHub.$emit('getData', this.chapter)
       this.chapter--
-      if (this.chapter < 1) {
+      if (this.chapter <= 1) {
         this.chapter = 1
         this.$refs.pre.style.background = 'gray'
       }
+      this.$root.eventHub.$emit('stopPlay')
+      this.$refs.next.style.background = '#99CCCC'
+      this.$root.eventHub.$emit('getData', this.chapter)
     },
     toNext() {
-      if (this.chapter === 1) {
-        this.chapter = 2
-      }
-      this.$refs.pre.style.background = '#99CCCC'
-      this.$root.eventHub.$emit('getData', this.chapter)
       this.chapter++
-      if (this.chapter > this.countData) {
+      if (this.chapter >= this.countData) {
         this.chapter = this.countData
         this.$refs.next.style.background = 'gray'
       }
-
+      this.$root.eventHub.$emit('stopPlay')
+      this.$refs.pre.style.background = '#99CCCC'
+      this.$root.eventHub.$emit('getData', this.chapter)
     },
 
     getData() {
@@ -65,8 +62,15 @@ export default {
 .wrapper
   display flex
   justify-content space-around
+  margin-top 10px
+  margin-bottom 10px
   .preview , .next
+    width 60px
+    height 20px
+    text-align center
     background #99CCCC
+    outline none
+    border 0
     padding 3px 15px
     border-radius 5px
     &.preview
