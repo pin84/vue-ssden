@@ -1,6 +1,6 @@
 <template>
 
-  <audio ref="audio"  @click="_play">
+  <audio ref="audio" >
     <source :src="require('../assets/mp3/'+mp3_name+'.mp3')">
   </audio>
 </template>
@@ -13,12 +13,10 @@ export default {
 
   data() {
     return {
-
     }
   },
 
   mounted() {
-    // this._playa()
     this.$root.eventHub.$on('stopPlay', () => {
       this.stopPlay()
     })
@@ -33,24 +31,24 @@ export default {
       if(audio){
         audio.pause()
         audio.currentTime = 0.0
+        audio.parentNode.className = 'audio start'
       }
-      
     },
-    _play() {
-      let oAudio =Array.from(document.querySelectorAll('audio'))
-      oAudio.forEach((audio)=>{
-        audio.pause()
-        audio.currentTime = 0.0
-      })
-      
-      let audio = this.$refs.audio
-      if (audio.paused) {
-        audio.play()
-      } else {
-        audio.pause()
-        audio.currentTime = 0.0
-      }
-    }
+
+    // _play() {
+    //   let oAudio =Array.from(document.querySelectorAll('audio'))
+    //   oAudio.forEach((audio)=>{
+    //     audio.pause()
+    //     audio.currentTime = 0.0
+    //   })
+    //   let audio = this.$refs.audio
+    //   if (audio.paused) {
+    //     audio.play()
+    //   } else {
+    //     audio.pause()
+    //     audio.currentTime = 0.0
+    //   }
+    // }
   }
 
 }

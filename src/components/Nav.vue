@@ -46,7 +46,6 @@ export default {
 
     initData() {
       axios.get('http://192.168.3.107:8081/web/dfbook/findBookPreview').then((response) => {
-        // console.log(response.data);
         this.titles = response.data
       })
     }

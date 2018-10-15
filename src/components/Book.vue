@@ -1,5 +1,5 @@
 <template>
-  <div class="book" ref="wrapper">
+  <div class="book" @click="toggleNav" >
     <Detail  ref="detail"/>
     <PageToggle />
     <!-- <Nav  class="nav" ref="preview"/> -->
@@ -21,19 +21,21 @@ export default {
   },
 
   methods:{
-    toggleNav(){
-      let flag = true
-      let wrapper = this.$refs.wrapper,
-      preview = this.$refs.preview.$el
-      wrapper.addEventListener('click',(e)=>{
-        if(flag && e.target.className.split(' ')[0] !== 'audiobox'){
-          preview.style.transform = `translateX(0%)`
-          flag = false
-        } else {
-          preview.style.transform = `translateX(-100%)`
-          flag = true
-        }
-      })
+    toggleNav(e){
+      // console.log(e.target);
+      
+      // let flag = true
+      // let wrapper = this.$refs.wrapper,
+      // preview = this.$refs.preview.$el
+      // wrapper.addEventListener('click',(e)=>{
+      //   if(flag && e.target.className.split(' ')[0] !== 'audiobox'){
+      //     preview.style.transform = `translateX(0%)`
+      //     flag = false
+      //   } else {
+      //     preview.style.transform = `translateX(-100%)`
+      //     flag = true
+      //   }
+      // })
     }
 
 
