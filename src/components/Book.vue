@@ -78,7 +78,7 @@ export default {
     padding 5px
     position relative
     box-sizing border-box
-    margin-bottom 60px
+    margin-bottom 120px
     .nav
       position fixed
       top 0
