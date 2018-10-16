@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <input class="preview" ref="pre" @click="toPre" value="上一篇" />
-    <input class="next" ref="next" @click="toNext" value="下一篇" />
+    <input class="preview" ref="pre" @click="toPre" value="上一篇" readonly unselectable="on" />
+    <input class="next" ref="next" value="下一篇" readonly unselectable="on" />
   </div>
 </template>
 
@@ -12,45 +12,65 @@ export default {
   data() {
     return {
       chapter: 3,
-      countData:0
+      countData: 0
     }
   },
   mounted() {
     this.initData()
+    this.toNext()
+    this.toPre()
+  },
+  updated() {
   },
 
-
   methods: {
-    initData(){
-      axios.get('http://192.168.3.107:8081/web/dfbook/countData').then((json)=>{
+    initData() {
+      axios.get('http://192.168.3.107:8081/web/dfbook/countData').then((json) => {
         this.countData = json.data[0].count
       })
     },
 
     toPre() {
-      this.chapter--
-      if (this.chapter <= 1) {
-        this.chapter = 1
-        this.$refs.pre.style.background = 'gray'
-      }
-      this.$root.eventHub.$emit('stopPlay')
-      this.$refs.next.style.background = '#99CCCC'
-      this.$root.eventHub.$emit('getData', this.chapter)
+      let pre = this.$refs.pre
+      pre.addEventListener('touchstart', () => {
+        if (this.chapter <= 1) {
+          return
+        }
+        pre.style.background = '#666699'
+      })
+      pre.addEventListener('touchend', () => {
+        pre.style.background = '#99CCCC'
+        this.chapter--
+        this.$root.eventHub.$emit('stopPlay')
+        this.$refs.next.style.background = '#99CCCC'
+        if (this.chapter <= 1) {
+          this.chapter = 1
+          pre.style.background = 'gray'
+        }
+        this.$root.eventHub.$emit('getData', this.chapter)
+      }, { once: true })
     },
     toNext() {
-      this.chapter++
-      if (this.chapter >= this.countData) {
-        this.chapter = this.countData
-        this.$refs.next.style.background = 'gray'
-      }
-      this.$root.eventHub.$emit('stopPlay')
-      this.$refs.pre.style.background = '#99CCCC'
-      this.$root.eventHub.$emit('getData', this.chapter)
+      let next = this.$refs.next
+      next.addEventListener('touchstart', () => {
+        if (this.chapter >= this.countData) {
+          return
+        }
+        next.style.background = '#666699'
+      })
+
+      next.addEventListener('touchend', () => {
+        next.style.background = '#99CCCC'
+        this.chapter++
+        this.$root.eventHub.$emit('stopPlay')
+        this.$refs.pre.style.background = '#99CCCC'
+        if (this.chapter >= this.countData) {
+          this.chapter = this.countData
+          next.style.background = 'gray'
+        }
+        this.$root.eventHub.$emit('getData', this.chapter)
+      })
     },
-
-    getData() {
-
-    }
   }
 }
 </script>
@@ -69,7 +89,7 @@ export default {
     background #99CCCC
     outline none
     border 0
-    padding 3px 15px
+    // padding 3px 15px
     border-radius 5px
     &.preview
       background gray

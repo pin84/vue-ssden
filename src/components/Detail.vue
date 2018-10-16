@@ -5,9 +5,9 @@
       <span class="text">
         {{item.text}}
       </span>
-      <div class="audio" ref="audiobox">
+      <span class="audio" ref="audiobox">
         <Audio :mp3_name='item.mp3' />
-      </div>
+      </span>
     </div>
   </div>
 </template>
@@ -60,12 +60,10 @@ export default {
       }, false)
     },
     _play(e) {
-      console.log('lick');
-      
+      // console.log('lick');
       let target = e.target
       let audio = target.children[0]
       if (target.className.split(' ')[0] === 'audio') {
-
         if(target.flag){
           audio.pause()
           audio.currentTime = 0.0
@@ -73,7 +71,6 @@ export default {
           target.flag= false
           return
         }
-
         let audiosbox = Array.from(document.querySelectorAll('.audio'))
         audiosbox.forEach((item) => {
           item.flag = false
@@ -81,7 +78,6 @@ export default {
           item.className = 'audio start'
           item.children[0].currentTime = 0.0
         })
-
         if (!target.flag) {
           target.flag = true
           audio.play()
@@ -91,7 +87,6 @@ export default {
           audio.currentTime = 0.0
           target.className = 'audio start'
           target.flag = false
-
         }
       }
     },
@@ -149,6 +144,7 @@ export default {
       width 24px
       height 24px
       background url(../assets/audio.png) no-repeat center
+      // background-color #6699CC
       z-index 9999
       &.start
         background url(../assets/audio.png) no-repeat center
