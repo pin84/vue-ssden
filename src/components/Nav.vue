@@ -40,6 +40,7 @@ export default {
           e.target.style.background = ''
           this.$root.eventHub.$emit('getDataByTitle',e.target.innerText)
         }
+        this.$root.eventHub.$emit('showNav')
       })
       
     },

@@ -2,8 +2,8 @@
   <div class="foot">
     <PageToggle />
     <ul class="list">
-      <li @touchstart='liClickStart' @touchend='liClickEnd' v-for="(item,index) in mulu" :key="index" @click="aaa">
-        <span >{{item}}</span>
+      <li @touchstart='liClickStart' @touchend='liClickEnd' v-for="(item,index) in mulu" :key="index" >
+        {{item}}
       </li>
     </ul>
   </div>
@@ -38,12 +38,11 @@ export default {
         return
       }
       target.style.background = ''
-      console.log('touchend');
+      if(target.innerText === '目录'){
+        this.$root.eventHub.$emit('showNav')
+      }
     },
-    aaa(){
-      console.log('click aaa');
-      this.$root.eventHub.$emit('abc')
-    }
+    
   }
 }
 </script>

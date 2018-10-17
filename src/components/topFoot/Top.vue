@@ -1,6 +1,10 @@
 <template>
 <div class="wrapper">
-  <div class="back"></div>
+  <div class="back"
+   ref="back"
+   @touchstart="backTouchstart"
+   @touchend="backTouchend"
+   ></div>
   <div class="right">
     <span class="search"></span>
     <span></span>
@@ -9,6 +13,18 @@
 </template>
 <script>
 export default {
+  methods:{
+    backTouchstart(){
+      let back = this.$refs.back
+      back.style.backgroundColor = '#006699'
+    },
+
+    backTouchend(){
+      let back = this.$refs.back
+      back.style.backgroundColor = ''
+      this.$root.eventHub.$emit('closeBook') //cover.vue
+    }
+  }
 }
 </script>
 <style lang='stylus' scoped>
