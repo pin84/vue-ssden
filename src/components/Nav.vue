@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
-    <h1 class="title">创新实用英语</h1>
+    <h1 class="title">新时代大学英语</h1>
     <ul class="nav">
       <li class="preview">目录</li>
     </ul>
     <ul class="list" ref="list">
-      <li v-for="(item,index) in titles" :key="index" >
+      <li v-for="(item,index) in titles" :key="index" @touchstart='liTouchstart' @touchend='toDetailPage' ref="oli">
         {{item.title}}
       </li>
     </ul>
@@ -22,27 +22,16 @@ export default {
   mounted() {
     this.initData()
   },
-  updated(){
-    this.toDetailPage()
-
-  },
-
   methods: {
-    toDetailPage(){
-      let list = this.$refs.list
-      list.addEventListener('touchstart',(e)=>{
-        if(e.target.tagName === 'LI'){
-          e.target.style.background = '#FFCC00'
-        }
-      })
-      list.addEventListener('touchend',(e)=>{
-        if(e.target.tagName === 'LI'){
-          e.target.style.background = ''
-          this.$root.eventHub.$emit('getDataByTitle',e.target.innerText)
-        }
-        this.$root.eventHub.$emit('showNav')
-      })
-      
+    liTouchstart(e) {
+      e.target.style.background = '#FFCC00'
+    },
+
+    toDetailPage(e) {
+      let target = e.target
+      target.style.background = ''
+      this.$root.eventHub.$emit('getData', target.innerText) //detail.vue
+      this.$root.eventHub.$emit('showNav') //book.vue
     },
 
     initData() {

@@ -14,7 +14,7 @@
 <script>
 
 import Detail from './Detail'
-import PageToggle from './PageToggle'
+// import PageToggle from './PageToggle'
 import Nav from './Nav'
 import Top from './topFoot/Top'
 import Foot from './topFoot/Foot'
@@ -28,7 +28,7 @@ export default {
   },
   components: {
     Detail,
-    PageToggle,
+    // PageToggle,
     Nav,
     Top,
     Foot,

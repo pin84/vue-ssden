@@ -19,9 +19,7 @@ import Audio from './Audio'
 export default {
   data() {
     return {
-      title: 'Waiting for Ages!',
-      msg: 'I know it might sound strange, but recently I’ve started thinking about what the places you arrange to meet say about you. Let me give you an example of what I mean. The other day, I arranged to meet a friend of mine outside the post office in Moss Side, a particularly rough area of Manchester. My friend was late—as usual. I had to wait for half an hour in the street, watching the police drive by and the rain come down. While I was there, two people asked me for money and a big guy came up to me and said, “What are you looking at?” I suddenly thought, “What am I doing here? This is a terrible place to meet!',
-      msg1: 'When I was younger, I used to meet people at bus stops because I didn’t want my parents to see who I was going out with. I didn’t want to meet in a bar because if I was the first one there, I’d look lonely and the manager might ask me my age. Now that I’m older and don’t live with my parents, I don’t care if I have to sit in a café or somewhere like that by myself. I’d rather look a bit lonely than be outside, getting cold and wet.',
+      title: '',
       contents: [],
       flag: true
     }
@@ -35,21 +33,11 @@ export default {
   },
 
   mounted() {
-    this.getData(3)
-    this.$root.eventHub.$on('getData', (chapter) => {
-      this.getData(chapter)
-    })
+    this.getData('Waiting for Ages!')
     //给侧边导航用
-    this.$root.eventHub.$on('getDataByTitle', (title) => {
-      this.getDataByTitle(title)
+    this.$root.eventHub.$on('getData', (keyword) => {
+      this.getData(keyword)
     })
-
-
-  },
-  updated() {
-    // this._play()
-    // this.resetAudioBoxImg()
-    // this._test()
   },
   methods: {
     _test() {
@@ -64,11 +52,11 @@ export default {
       let target = e.target
       let audio = target.children[0]
       if (target.className.split(' ')[0] === 'audio') {
-        if(target.flag){
+        if (target.flag) {
           audio.pause()
           audio.currentTime = 0.0
           target.className = 'audio start'
-          target.flag= false
+          target.flag = false
           return
         }
         let audiosbox = Array.from(document.querySelectorAll('.audio'))
@@ -100,24 +88,23 @@ export default {
       })
     },
 
-
-    getData(chapter) {
+    getData(keyword) {
       axios.post('http://192.168.3.107:8081/web/dfbook/findAll',
-        { chapter: chapter })
+        { keyword: keyword })
         .then((myJson) => {
           this.contents = myJson.data
-          // console.log(this.contents);
+          this.title = myJson.data[0].title
+          this.$root.eventHub.$emit('changeChapter',myJson.data[0].chapter) //paggeToggle.vue
         })
-      // this._play()
     },
 
-    getDataByTitle(title) {
-      axios.post('http://192.168.3.107:8081/web/dfbook/getDataByTitle',
-        { title: title })
-        .then((response) => {
-          this.contents = response.data
-        })
-    }
+    // getDataByTitle(title) {
+    //   axios.post('http://192.168.3.107:8081/web/dfbook/getDataByTitle',
+    //     { title: title })
+    //     .then((response) => {
+    //       this.contents = response.data
+    //     })
+    // }
 
 
   }

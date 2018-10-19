@@ -11,12 +11,15 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      chapter: 3,
+      chapter: 1,
       countData: 0
     }
   },
   mounted() {
     this.initData()
+    this.$root.eventHub.$on('changeChapter',(chapter)=>{
+      this.chapter = chapter
+    })
   },
   methods: {
     initData() {
@@ -45,8 +48,7 @@ export default {
         this.chapter = 1
         pre.style.background = 'gray'
       }
-      this.$root.eventHub.$emit('getData', this.chapter)
-
+      this.$root.eventHub.$emit('getData', this.chapter) //detail.vue
     },
     toNextTouchstart() {
       if (this.chapter >= this.countData) {
