@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     initData() {
-      axios.get('http://xsden.iathena.top/web/dfbook/countData').then((json) => {
+      axios.get('http://data.iathena.top/web/dfbook/countData').then((json) => {
         this.countData = json.data[0].count
       })
     },

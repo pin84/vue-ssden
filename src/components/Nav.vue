@@ -35,7 +35,7 @@ export default {
     },
 
     initData() {
-      axios.get('http://xsden.iathena.top/web/dfbook/findBookPreview').then((response) => {
+      axios.get('http://data.iathena.top/web/dfbook/findBookPreview').then((response) => {
         this.titles = response.data
       })
     }

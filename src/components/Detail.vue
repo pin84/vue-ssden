@@ -89,7 +89,7 @@ export default {
     },
 
     getData(keyword) {
-      axios.post('http://xsden.iathena.top/web/dfbook/findAll',
+      axios.post('http://data.iathena.top/web/dfbook/findAll',
         { keyword: keyword })
         .then((myJson) => {
           this.contents = myJson.data
