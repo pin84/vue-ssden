@@ -89,7 +89,7 @@ export default {
     },
 
     getData(keyword) {
-      axios.post('http://192.168.3.107:8081/web/dfbook/findAll',
+      axios.post('http://xsden.iathena.top/web/dfbook/findAll',
         { keyword: keyword })
         .then((myJson) => {
           this.contents = myJson.data
