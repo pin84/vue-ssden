@@ -4,11 +4,25 @@
     <ul class="nav">
       <li class="preview">目录</li>
     </ul>
-    <ul class="list" ref="list">
+    <!-- <ul class="list" ref="list">
       <li v-for="(item,index) in titles" :key="index" @touchstart='liTouchstart' @touchend='toDetailPage' ref="oli">
         {{item.title}}
       </li>
+    </ul> -->
+
+    <ul>
+      <li v-for="(unit,index) in units" :key="index">
+        <span>{{unit}}</span>
+        <ul>
+          <li v-for="(part , index) in parts" :key="index">
+            <span> {{part.title}}</span>
+            <!-- <div>{{part.content}}</div> -->
+          </li>
+        </ul>
+
+      </li>
     </ul>
+
   </div>
 </template>
 <script>
@@ -16,9 +30,70 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      titles: []
+      titles: [],
+
+      units: ['Unit 1 Communication', 'Unit 2 Communication'],
+      // parts: ['Part One Reading', , 'Part Two Grammar Focus', 'Part Three Practical Writing', 'Part Four Translation Focus'],
+      parts: {
+        p1: {
+          title: 'Part One Reading',
+          content: {
+            title:'',
+            text: {
+              title: 'Text A Waiting for Ages!',
+              section: {
+                s1: 'aaa',
+                s2: 'bbb'
+              }
+            }
+          }
+        },
+        p2: {
+          title: 'Part One Reading',
+          content: {
+            text: {
+              title: 'Text A Waiting for Ages!',
+              section: {
+                s1: 'aaa',
+                s2: 'bbb'
+              }
+            }
+          }
+        }
+      },
+
+
+      texts: ['Text A Waiting for Ages!'],
+      section: {
+        s1: 'Section 1 Vocabulary',
+        s2: 'Section 2 Sentence Analysis',
+      },
+
+
+      unit: {
+        title: 'Communication',
+        parts: {
+          part_1: {
+            title: 'Reading',
+            text: {
+              title: 'Text A Waiting for Ages!',
+              Section_1: 'Vocabulary',
+              Section_2: 'Sentence Analysis',
+            }
+          },
+          part_2: {
+            title: 'Part Two Grammar Focus',
+            p_detail: {
+              title: '名词'
+
+            }
+          }
+        }
+      }
     }
   },
+
+
   mounted() {
     this.initData()
   },
@@ -35,7 +110,7 @@ export default {
     },
 
     initData() {
-      axios.get('http://data.iathena.top/web/dfbook/findBookPreview').then((response) => {
+      axios.get('http://192.168.3.107:9000/web/dfbook/findBookPreview').then((response) => {
         this.titles = response.data
       })
     }
@@ -50,7 +125,7 @@ export default {
   height 100%
   background #FFFFCC
   position relative
-  transform scale3d(1,1,1)
+  // transform scale3d(1,1,1)
   .title
     text-align center
     font-size 18px

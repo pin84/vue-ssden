@@ -79,17 +79,10 @@ export default {
       }
     },
 
-    resetAudioBoxImg() {
-      let audios = this.$refs.audio
-      audios.forEach((item, i) => {
-        item.$el.addEventListener('ended', function () {
-          this.parentNode.className = 'audiobox start'
-        })
-      })
-    },
 
     getData(keyword) {
-      axios.post('http://data.iathena.top/web/dfbook/findAll',
+      // axios.post('http://data.iathena.top/web/dfbook/findAll',
+      axios.post('http://192.168.3.107:9000/web/dfbook/findAll',
         { keyword: keyword })
         .then((myJson) => {
           this.contents = myJson.data
@@ -97,15 +90,6 @@ export default {
           this.$root.eventHub.$emit('changeChapter',myJson.data[0].chapter) //paggeToggle.vue
         })
     },
-
-    // getDataByTitle(title) {
-    //   axios.post('http://192.168.3.107:8081/web/dfbook/getDataByTitle',
-    //     { title: title })
-    //     .then((response) => {
-    //       this.contents = response.data
-    //     })
-    // }
-
 
   }
 

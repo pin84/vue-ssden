@@ -1,6 +1,6 @@
 <template>
 
-  <audio ref="audio" >
+  <audio ref="audio"  @ended="resetAudioBoxImg">
     <source :src="require('../assets/mp3/'+mp3_name+'.mp3')">
   </audio>
 </template>
@@ -20,9 +20,6 @@ export default {
     this.$root.eventHub.$on('stopPlay', () => {
       this.stopPlay()
     })
-    // this.$root.eventHub.$on('_play', () => {
-    //   this._play()
-    // })
   },
 
   methods: {
@@ -35,20 +32,9 @@ export default {
       }
     },
 
-    // _play() {
-    //   let oAudio =Array.from(document.querySelectorAll('audio'))
-    //   oAudio.forEach((audio)=>{
-    //     audio.pause()
-    //     audio.currentTime = 0.0
-    //   })
-    //   let audio = this.$refs.audio
-    //   if (audio.paused) {
-    //     audio.play()
-    //   } else {
-    //     audio.pause()
-    //     audio.currentTime = 0.0
-    //   }
-    // }
+    resetAudioBoxImg() {
+      this.$el.parentNode.className = 'audio start'
+    },
   }
 
 }

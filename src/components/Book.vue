@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Cover class="cover" />
+    <!-- <Cover class="cover" /> -->
     <div class="book" @click="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
@@ -108,7 +108,8 @@ export default {
         left 0
         width 80%
         transition 800ms
-        transform translateX(-100%)
+        // transform translateX(-100%)
+        transform translateX(0%)
     .top, .foot
       transition 800ms
       transform translateY(-100%)
