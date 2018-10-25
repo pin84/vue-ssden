@@ -1,113 +1,189 @@
 <template>
-  <div class="wrapper">
-    <h1 class="title">新时代大学英语</h1>
+  <div class="wrapper" @click="SHNav" >
+    <h1 class="bookname">新时代大学英语</h1>
     <ul class="nav">
       <li class="preview">目录</li>
     </ul>
-    <!-- <ul class="list" ref="list">
-      <li v-for="(item,index) in titles" :key="index" @touchstart='liTouchstart' @touchend='toDetailPage' ref="oli">
-        {{item.title}}
-      </li>
-    </ul> -->
-
-    <ul>
-      <li v-for="(unit,index) in units" :key="index">
-        <span>{{unit}}</span>
-        <ul>
-          <li v-for="(part , index) in parts" :key="index">
-            <span> {{part.title}}</span>
-            <!-- <div>{{part.content}}</div> -->
-          </li>
-        </ul>
-
-      </li>
+    <!-- the demo root element -->
+    <ul id="list">
+      <item class="item" :model="data.unitOne" />
+      <item class="item" :model="data.unitTwo"  />
     </ul>
-
   </div>
+
 </template>
 <script>
 import axios from 'axios'
+import item from './topFoot/Tree'
 export default {
   data() {
     return {
-      titles: [],
-
-      units: ['Unit 1 Communication', 'Unit 2 Communication'],
-      // parts: ['Part One Reading', , 'Part Two Grammar Focus', 'Part Three Practical Writing', 'Part Four Translation Focus'],
-      parts: {
-        p1: {
-          title: 'Part One Reading',
-          content: {
-            title:'',
-            text: {
-              title: 'Text A Waiting for Ages!',
-              section: {
-                s1: 'aaa',
-                s2: 'bbb'
-              }
-            }
-          }
+      data: {
+        unitOne: {
+          name: 'Unit 1 Communication',
+          children: [
+            // { name: 'Part One Reading' },
+            // { name: 'wat' },
+            // { name: 'aaa' },
+            {
+              name: 'Part One Reading',
+              children: [
+                {
+                  name: 'Text A Waiting for Ages!',
+                  children: [
+                    { name: 'Section 1 Vocabulary' },
+                    { name: 'Section 2 Sentence Analysis' }
+                  ]
+                },
+              ]
+            },
+            {
+              name: 'Part Two Grammar Focus',
+              children: [
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                },
+                { name: 'hello' },
+                { name: 'wat' },
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'Part Three Practical Writing',
+              children: [
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                },
+                { name: 'hello' },
+                { name: 'wat' },
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                }
+              ]
+            },
+          ]
         },
-        p2: {
-          title: 'Part One Reading',
-          content: {
-            text: {
-              title: 'Text A Waiting for Ages!',
-              section: {
-                s1: 'aaa',
-                s2: 'bbb'
-              }
-            }
-          }
-        }
-      },
-
-
-      texts: ['Text A Waiting for Ages!'],
-      section: {
-        s1: 'Section 1 Vocabulary',
-        s2: 'Section 2 Sentence Analysis',
-      },
-
-
-      unit: {
-        title: 'Communication',
-        parts: {
-          part_1: {
-            title: 'Reading',
-            text: {
-              title: 'Text A Waiting for Ages!',
-              Section_1: 'Vocabulary',
-              Section_2: 'Sentence Analysis',
-            }
-          },
-          part_2: {
-            title: 'Part Two Grammar Focus',
-            p_detail: {
-              title: '名词'
-
-            }
-          }
-        }
+        unitTwo: {
+          name: 'Unit 2 Communication',
+          children: [
+            // { name: 'Part One Reading' },
+            // { name: 'wat' },
+            // { name: 'aaa' },
+            {
+              name: 'Part One Reading',
+              children: [
+                {
+                  name: 'Text A Waiting for Ages!',
+                  children: [
+                    { name: 'Section 1 Vocabulary' },
+                    { name: 'Section 2 Sentence Analysis' }
+                  ]
+                },
+              ]
+            },
+            {
+              name: 'Part Two Grammar Focus',
+              children: [
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                },
+                { name: 'hello' },
+                { name: 'wat' },
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                }
+              ]
+            },
+            {
+              name: 'Part Three Practical Writing',
+              children: [
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                },
+                { name: 'hello' },
+                { name: 'wat' },
+                {
+                  name: 'child folder',
+                  children: [
+                    { name: 'hello' },
+                    { name: 'wat' }
+                  ]
+                }
+              ]
+            },
+          ]
+        },
+        flag: false
       }
     }
   },
-
-
+  components: {
+    item
+  },
   mounted() {
-    this.initData()
+    // this.initData()
+    this.$root.eventHub.$on('SHNav', this.SHNav)
   },
   methods: {
-    liTouchstart(e) {
-      e.target.style.background = '#FFCC00'
+    abc(){
+      console.log('abc')
+    },
+    SHNav(e) {
+      if(e){
+        // console.log(e.target);
+
+      }
+
+      // if (!this.flag) {
+      //   this.$el.style.transform = 'translateX(0%)'
+      //   this.flag = true
+      // } else {
+      //    this.$el.style.transform = 'translateX(-100%)'
+      //    this.flag = false
+      // }
+
     },
 
-    toDetailPage(e) {
-      let target = e.target
-      target.style.background = ''
-      this.$root.eventHub.$emit('getData', target.innerText) //detail.vue
-      this.$root.eventHub.$emit('showNav') //book.vue
-    },
+    // liTouchstart(e) {
+    //   e.target.style.background = '#FFCC00'
+    // },
+
+    // toDetailPage(e) {
+    //   let target = e.target
+    //   target.style.background = ''
+    //   this.$root.eventHub.$emit('getData', target.innerText) //detail.vue
+    //   this.$root.eventHub.$emit('showNav') //book.vue
+    // },
 
     initData() {
       axios.get('http://192.168.3.107:9000/web/dfbook/findBookPreview').then((response) => {
@@ -125,28 +201,39 @@ export default {
   height 100%
   background #FFFFCC
   position relative
-  // transform scale3d(1,1,1)
-  .title
+  overflow-y auto
+  overflow-x auto
+  transition 800ms
+  transform translateX(0%)
+  opacity .6
+  .bookname
     text-align center
     font-size 18px
     padding-top 10px
   .nav .preview
-    padding 10px 0 0 10px
+    margin-left -8px
+    padding 10px 0 5px 10px
     box-sizing border-box
     border-bottom 1px solid #CCCCCC
-  .list
-    padding 10px
-    box-sizing border-box
-    position fixed
-    width 97%
-    top 66px
-    bottom 0
-    overflow-y scroll
-    overflow-x hidden
-    li
-      padding 5px
-      border-bottom 1px solid #ccc
-      &:first-child
-        padding-top 10px
+  #list
+    margin-top 10px
+    margin-left -5px
+    line-height 1.5em
+    list-style-type disc
+    box-sizing:border-box;
+  // .list
+  //   padding 10px
+  //   box-sizing border-box
+  //   position fixed
+  //   width 97%
+  //   top 66px
+  //   bottom 0
+  //   overflow-y scroll
+  //   overflow-x hidden
+  //   li
+  //     padding 5px
+  //     border-bottom 1px solid #ccc
+  //     &:first-child
+  //       padding-top 10px
 
 </style>

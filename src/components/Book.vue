@@ -4,8 +4,10 @@
     <div class="book" @click="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
-        <Detail ref="detail" />
-        <Nav class="nav" ref="preview" />
+        <!-- <Detail ref="detail" /> -->
+        <!-- <UnitOne /> -->
+        <router-view />
+        <!-- <Nav class="nav"  /> -->
       </div>
       <Foot class="foot" ref="foot" />
     </div>
@@ -19,6 +21,7 @@ import Nav from './Nav'
 import Top from './topFoot/Top'
 import Foot from './topFoot/Foot'
 import Cover from './topFoot/Cover'
+import UnitOne from './article/unit_01'
 export default {
   data() {
     return {
@@ -32,14 +35,14 @@ export default {
     Nav,
     Top,
     Foot,
-    Cover
+    Cover,
+    UnitOne
   },
   created() {
 
   },
 
   mounted() {
-    this.$root.eventHub.$on('showNav', this.showNav)
   },
   updated() {
     // this.toggleNav()
@@ -66,17 +69,6 @@ export default {
         this.TFflag = true
       }
     },
-
-    showNav() {
-      let preview = this.$refs.preview.$el
-      if (this.flag) {
-        preview.style.transform = `translateX(0%)`
-        this.flag = false
-      } else {
-        preview.style.transform = `translateX(-100%)`
-        this.flag = true
-      }
-    }
   }
 
 }
@@ -107,9 +99,6 @@ export default {
         top 0
         left 0
         width 80%
-        transition 800ms
-        // transform translateX(-100%)
-        transform translateX(0%)
     .top, .foot
       transition 800ms
       transform translateY(-100%)
