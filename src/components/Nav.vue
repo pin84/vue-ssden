@@ -205,7 +205,7 @@ export default {
   overflow-x auto
   transition 800ms
   transform translateX(0%)
-  opacity .6
+  opacity .8
   .bookname
     text-align center
     font-size 18px

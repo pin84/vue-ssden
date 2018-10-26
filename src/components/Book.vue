@@ -4,8 +4,6 @@
     <div class="book" @click="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
-        <!-- <Detail ref="detail" /> -->
-        <!-- <UnitOne /> -->
         <router-view />
         <!-- <Nav class="nav"  /> -->
       </div>
@@ -15,13 +13,11 @@
 </template>
 <script>
 
-import Detail from './Detail'
 // import PageToggle from './PageToggle'
 import Nav from './Nav'
 import Top from './topFoot/Top'
 import Foot from './topFoot/Foot'
 import Cover from './topFoot/Cover'
-import UnitOne from './article/unit_01'
 export default {
   data() {
     return {
@@ -30,13 +26,11 @@ export default {
     }
   },
   components: {
-    Detail,
     // PageToggle,
     Nav,
     Top,
     Foot,
     Cover,
-    UnitOne
   },
   created() {
 

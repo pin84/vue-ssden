@@ -1,20 +1,17 @@
 <template>
 
-
   <li>
-    <!-- <div  :class="{bold: isFolder}" @click="toggle" @dblclick="changeType" @touchstart='ts' @touchend='te'>
-      {{ model.name }}
-      <span v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
-    </div> -->
-    <div class="title"   :class="{bold: isFolder}" @click="toggle" @dblclick="changeType" @touchstart='ts' @touchend='te'>
-      {{ model.name }}
+    <div class="title" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType" >
+
+      <span  @touchstart='ts'  @touchend="toRouter">  {{ model.name }}</span>
+      <!-- <router-link tag="span" :to="this.url" @touchstart.native='ts'  @click.native="toRouter">  {{ model.name }}</router-link> -->
+
       <span  v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
     </div>
 
     <ul v-show="open" v-if="isFolder">
       <item class="item" v-for="(model, index) in model.children" :key="index" :model="model">
       </item>
-
       <!-- <li class="add" @click="addChild">+</li> -->
     </ul>
   </li>
@@ -29,6 +26,7 @@ export default {
   data: function () {
     return {
       open: false,
+      url:''
     }
   },
   computed: {
@@ -36,26 +34,33 @@ export default {
       return this.model.children &&
         this.model.children.length
     },
-    routPath:function(){
+    routPath: function () {
       let path = ''
 
     }
   },
-  mounted(){
+  mounted() {
     // console.log(this.model.name );
   },
   methods: {
     ts() {
       this.$el.style.background = '#6699CC'
     },
-    te(e) {
-      let url = (e.target.innerText).match(/[a-zA-Z0-9]/g).join('')
-      console.log('tree.vue====te',url.substr(0,4));
-      this.$el.style.background = ''
-      if(url.substr(0,4) === 'Unit'){
-        this.$router.push(`${url}`)
-      }
+    toRouter(e){
+       this.$el.style.background = ''
+      let url = e.target.innerText.replace(/\s/g,'')
+      console.log('toRouter====',url);
+      this.$router.push(`/${url}`)
+
+      // if(!this.open){
+      //   let  url = this.$el.innerText.match(/[a-z0-9A-Z]/g).join('')
+      //   this.url = '/'+ url
+      // }
+
+
+      // console.log(url);
     },
+   
     toggle: function () {
       if (this.isFolder) {
         this.open = !this.open
