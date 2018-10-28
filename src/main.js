@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import promise from 'es6-promise'
 
+
 promise.polyfill()
 
 Vue.config.productionTip = false

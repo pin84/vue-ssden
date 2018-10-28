@@ -4,7 +4,7 @@
       <h3 ref="h3">Unit 1 Communication</h3>
       <h4>Part One Reading</h4>
     </div>
-    <!-- <TextA /> -->
+    <TextA />
     <Section01 ref="section1"  class="s1"/>
     <Section02 ref="section2"  class="s2"/>
   </div>

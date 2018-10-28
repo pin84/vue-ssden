@@ -3,13 +3,15 @@
   padding: 0;
 }
 
-html{
-  font-size:3.5%;
+ul , li {
+  list-style: none;
 }
 
-ul, li {
-  list-style: none
-}
+
+html{
+  font-size:62.5%;
+} 
+
 
 a{
   text-decoration: none

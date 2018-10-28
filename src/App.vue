@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-@import url('../public/css/myreset.css');
+@import url('./assets/css/myreset.css');
 @font-face{
   font-family:'myFont';
   src:url('./assets/fonts/Ksphonet.ttf')
@@ -35,9 +35,7 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
   -webkit-tap-highlight-color: transparent;
-  font-size:1rem
+  font-size:1.6rem
 }
-/* li{
-  list-style: none;
-} */
+
 </style>

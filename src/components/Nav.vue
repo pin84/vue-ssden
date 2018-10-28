@@ -186,7 +186,7 @@ export default {
     // },
 
     initData() {
-      axios.get('http://192.168.3.107:9000/web/dfbook/findBookPreview').then((response) => {
+      axios.get('http://localhost:9000/web/dfbook/findBookPreview').then((response) => {
         this.titles = response.data
       })
     }
@@ -205,7 +205,7 @@ export default {
   overflow-x auto
   transition 800ms
   transform translateX(0%)
-  opacity .8
+  // opacity .8
   .bookname
     text-align center
     font-size 18px

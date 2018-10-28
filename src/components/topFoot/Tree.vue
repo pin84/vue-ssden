@@ -82,6 +82,10 @@ export default {
 }
 </script>
 <style lang='stylus' scoped>
+ul , li 
+  margin-left 8px 
+  padding 0px 
+  // list-style outside  
 
 .item {
   cursor: pointer;
