@@ -4,9 +4,8 @@
     <div class="title" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType" >
 
       <span  @touchstart='ts'  @touchend="toRouter">  {{ model.name }}</span>
-      <!-- <router-link tag="span" :to="this.url" @touchstart.native='ts'  @click.native="toRouter">  {{ model.name }}</router-link> -->
 
-      <span  v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
+      <span class="symbol" @touchstart="sts" @touchend='ste' v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
     </div>
 
     <ul v-show="open" v-if="isFolder">
@@ -43,6 +42,13 @@ export default {
     // console.log(this.model.name );
   },
   methods: {
+    sts(e){
+      e.target.style.background = '#6699CC'
+    },
+    ste(e){
+      e.target.style.background = ''
+    },
+
     ts() {
       this.$el.style.background = '#6699CC'
     },
@@ -86,6 +92,9 @@ ul , li
   margin-left 8px 
   padding 0px 
   // list-style outside  
+
+.symbol 
+  padding 5px
 
 .item {
   cursor: pointer;

@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
-    <!-- <Cover class="cover" /> -->
+    <Cover class="cover" />
     <div class="book" @click="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
         <router-view />
-        <!-- <Nav class="nav"  /> -->
+        <Nav class="nav"  />
       </div>
       <Foot class="foot" ref="foot" />
     </div>

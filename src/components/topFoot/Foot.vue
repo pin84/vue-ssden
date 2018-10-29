@@ -39,7 +39,7 @@ export default {
       }
       target.style.background = ''
       if(target.innerText === '目录'){
-        this.$root.eventHub.$emit('SHNav')
+        this.$root.eventHub.$emit('SHNav',e)
       }
     },
     

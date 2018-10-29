@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" @click="SHNav" >
+  <div class="wrapper" @click="SHNav">
     <h1 class="bookname">新时代大学英语</h1>
     <ul class="nav">
       <li class="preview">目录</li>
@@ -7,7 +7,7 @@
     <!-- the demo root element -->
     <ul id="list">
       <item class="item" :model="data.unitOne" />
-      <item class="item" :model="data.unitTwo"  />
+      <item class="item" :model="data.unitTwo" />
     </ul>
   </div>
 
@@ -155,22 +155,21 @@ export default {
     this.$root.eventHub.$on('SHNav', this.SHNav)
   },
   methods: {
-    abc(){
+    abc() {
       console.log('abc')
     },
     SHNav(e) {
-      if(e){
-        // console.log(e.target);
-
+      console.log('shnav', e.target.innerText === '[+]');
+      if (e.target.innerText === '[+]' || e.target.innerText === '[-]') {
+        return
       }
-
-      // if (!this.flag) {
-      //   this.$el.style.transform = 'translateX(0%)'
-      //   this.flag = true
-      // } else {
-      //    this.$el.style.transform = 'translateX(-100%)'
-      //    this.flag = false
-      // }
+      if (!this.flag) {
+        this.$el.style.transform = 'translateX(0%)'
+        this.flag = true
+      } else {
+        this.$el.style.transform = 'translateX(-100%)'
+        this.flag = false
+      }
 
     },
 
@@ -204,7 +203,7 @@ export default {
   overflow-y auto
   overflow-x auto
   transition 800ms
-  transform translateX(0%)
+  transform translateX(-100%)
   // opacity .8
   .bookname
     text-align center
