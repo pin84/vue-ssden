@@ -33,9 +33,11 @@ export default {
 <style lang='stylus' scoped>
 .section
   position relative
+  width 100%
   h3
     color red
-    margin-bottom 10px
+    text-align center
+    margin 10px 0
   .list
     position relative
     line-height 24px

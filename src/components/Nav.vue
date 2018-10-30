@@ -7,7 +7,7 @@
     <!-- the demo root element -->
     <ul id="list">
       <item class="item" :model="data.unitOne" />
-      <item class="item" :model="data.unitTwo" />
+      <!-- <item class="item" :model="data.unitTwo" /> -->
     </ul>
   </div>
 
@@ -41,42 +41,37 @@ export default {
               name: 'Part Two Grammar Focus',
               children: [
                 {
-                  name: 'child folder',
+                  name: '名词',
                   children: [
-                    { name: 'hello' },
-                    { name: 'wat' }
+                    { name: '1. 名词的分类' },
+                    { name: '2. 名词的格' }
                   ]
                 },
-                { name: 'hello' },
-                { name: 'wat' },
-                {
-                  name: 'child folder',
-                  children: [
-                    { name: 'hello' },
-                    { name: 'wat' }
-                  ]
-                }
               ]
             },
             {
               name: 'Part Three Practical Writing',
               children: [
                 {
-                  name: 'child folder',
+                  name: 'Business Card',
+                  // children: [
+                  //   { name: 'hello' },
+                  //   { name: 'wat' }
+                  // ]
+                },
+              ]
+            },
+            {
+              name: 'Part Four Translation Focus',
+              children: [
+                {
+                  name: '词义的选择',
                   children: [
-                    { name: 'hello' },
-                    { name: 'wat' }
+                    { name: '1. 根据搭配确定词义' },
+                    { name: '2. 根据上下文确定词义' },
+                    { name: '3. 根据词性确定词义' }
                   ]
                 },
-                { name: 'hello' },
-                { name: 'wat' },
-                {
-                  name: 'child folder',
-                  children: [
-                    { name: 'hello' },
-                    { name: 'wat' }
-                  ]
-                }
               ]
             },
           ]

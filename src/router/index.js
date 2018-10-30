@@ -4,6 +4,9 @@ import Router from 'vue-router'
 Vue.use(Router)
 
 import UnitOne from '../components/article/unit_01'
+import TextA from '../components/article/unit_01/TextA'
+import Section01 from '../components/article/unit_01/Section01'
+import Section02 from '../components/article/unit_01/Section02'
 import UnitTwo from '../components/article/unit_02'
 
 export default new Router({
@@ -51,17 +54,17 @@ export default new Router({
     },
     {
       path: '/TextAWaitingforAges!',
-      component: UnitOne,
+      component: TextA,
       meta: { scrollToTop: true }
     },
     {
       path: '/Section1Vocabulary',
-      component: UnitOne,
+      component: Section01,
       meta: { scrollToTop: true }
     },
     {
       path: '/Section2SentenceAnalysis',
-      component: UnitOne,
+      component: Section02,
       meta: { scrollToTop: true }
     },
 

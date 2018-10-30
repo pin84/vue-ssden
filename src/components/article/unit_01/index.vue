@@ -15,9 +15,9 @@ import Section01 from './Section01'
 import Section02 from './Section02'
 export default {
   mounted(){
-    console.log(this.$refs.h3.offsetTop);
-    console.log(this.$refs.section1.$el.offsetTop);
-    console.log(this.$refs.section2.$el.offsetTop);
+    // console.log(this.$refs.h3.offsetTop);
+    // console.log(this.$refs.section1.$el.offsetTop);
+    // console.log(this.$refs.section2.$el.offsetTop);
   },
 
   components: {
