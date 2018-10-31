@@ -44,6 +44,7 @@
           </div>
         </div>
       </li> -->
+      <p>{{tes}}</p>
       <li class="item" v-for="(item ,index ) in items" :key="index">
         <strong class="first" @touchstart='ts' @touchend='te' ref="strong">
           {{item.strong}}
@@ -81,7 +82,7 @@ export default {
           }
         },
         b: {
-          strong: '2.	arrange []  v. 安排；准备',
+          strong: '2. arrange []  v. 安排；准备',
           mp3: 'a02',
           contents: {
             c1: {
@@ -94,13 +95,28 @@ export default {
             }
           }
         },
-      }
+      },
+      tes:''
     }
   },
   components: {
     Audio
   },
+
+  mounted() {
+    this._initData()
+  },
   methods: {
+
+    _initData() {
+      fetch('http://localhost:9000/web/xsden').then((res) => {
+        return res.json()
+      }).then((myjson) => {
+        this.tes = myjson
+        console.log(myjson);
+      })
+    },
+
     ts(e) {
       e.target.style.background = '#6699CC'
     },

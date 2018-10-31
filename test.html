@@ -36,6 +36,7 @@
 </head>
 
 <body>
+  <h1></h1>
   <div class="img_move">
     <div class="img_3d">
       <img src="./src/assets/3.jpg" alt="">
@@ -57,6 +58,29 @@
 
     })
     console.log(move, img_3d);
+
+
+
+
+      let arr = ["苹果","香蕉","雪梨"];
+      let obj = {}
+      let a = []
+
+
+      arr.forEach((item,index)=>{
+        let obj = {}
+        obj['status'] = (index % 2 ===0) ? true : false
+        obj['data'] = item
+        a.push(obj)
+      })
+  console.log(a);
+  
+
+
+
+
+
+      
 
 
   </script>
