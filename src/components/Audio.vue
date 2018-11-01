@@ -18,7 +18,7 @@ export default {
 
   created(){
 
-    console.log(this.mp3_name);
+    // console.log(this.mp3_name);
   },
 
   mounted() {

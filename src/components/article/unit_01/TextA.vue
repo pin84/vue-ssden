@@ -33,11 +33,11 @@ export default {
   },
 
   mounted() {
-    this.getData('Waiting for Ages!')
+    // this.getData('Waiting for Ages!')
     //给侧边导航用
-    this.$root.eventHub.$on('getData', (keyword) => {
-      this.getData(keyword)
-    })
+    // this.$root.eventHub.$on('getData', (keyword) => {
+    //   this.getData(keyword)
+    // })
   },
   methods: {
     _test() {

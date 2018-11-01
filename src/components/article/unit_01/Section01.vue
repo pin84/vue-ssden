@@ -45,7 +45,7 @@
         </div>
       </li> -->
       <p>{{tes}}</p>
-      <li class="item" v-for="(item ,index ) in items" :key="index">
+      <li class="item" v-for="(item ,index ) in s1_strong" :key="index">
         <strong class="first" @touchstart='ts' @touchend='te' ref="strong">
           {{item.strong}}
           <Audio :mp3_name='item.mp3' />
@@ -67,6 +67,7 @@ export default {
   data() {
     return {
       items: {
+
         a: {
           strong: '1. the other day 前几天；不久前的一天',
           mp3: 'a01',
@@ -81,6 +82,9 @@ export default {
             }
           }
         },
+
+
+
         b: {
           strong: '2. arrange []  v. 安排；准备',
           mp3: 'a02',
@@ -96,7 +100,9 @@ export default {
           }
         },
       },
-      tes:''
+      tes: '',
+      s1_strong: [],
+      s1_contents:[]
     }
   },
   components: {
@@ -107,13 +113,49 @@ export default {
     this._initData()
   },
   methods: {
+    handleData(data) {
+      let arr = []
+      data.forEach((item) => {
+        let obj = {}
+        obj['strong'] = item.strong
+        obj['mp3'] = item.mp3
+        arr.push(obj)
+      })
+      return arr
+    },
+
+    handleData_1(data){
+      
+      let arr = [1,2,4,1,6,4]
+      let result = []
+
+      for(let i = 0; i < arr.length ; i++){
+        for(let j = i+1; j < arr.length; j++){
+          if(arr[i] === arr[j]){
+            j = ++i
+          }
+        }
+        result.push(arr[i])
+      }
+
+      console.log(result);
+      
+      
+    },
 
     _initData() {
-      fetch('http://localhost:9000/web/xsden').then((res) => {
+      fetch('http://localhost:9000/web/xsden/initData_1').then((res) => {
         return res.json()
       }).then((myjson) => {
-        this.tes = myjson
-        console.log(myjson);
+        // console.log(myjson);
+        
+        this.s1_strong = this.handleData(myjson)
+      })
+
+      fetch('http://localhost:9000/web/xsden/initData_2').then((res) => {
+        return res.json()
+      }).then((myjson) => {
+        this.handleData_1(myjson)
       })
     },
 
