@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <Cover class="cover" />
-    <div class="book" @touchend="toggleTopFoot">
+    <div class="book" @click="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
         <router-view />

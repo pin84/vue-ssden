@@ -179,6 +179,7 @@ export default {
 
     initData() {
       axios.get('http://192.168.3.107:9000/web/dfbook/findBookPreview').then((response) => {
+      // axios.get('http://data.iathena.top/web/dfbook/findBookPreview').then((response) => {
         this.titles = response.data
       })
     }
