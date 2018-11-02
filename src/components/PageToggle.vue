@@ -23,7 +23,7 @@ export default {
   },
   methods: {
     initData() {
-      axios.get('http://localhost:9000/web/xsden/countData').then((json) => {
+      axios.get('http://192.168.3.107:9000/web/xsden/countData').then((json) => {
         this.countData = json.data[0].count
       })
     },

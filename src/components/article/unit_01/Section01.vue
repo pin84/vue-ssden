@@ -44,15 +44,19 @@
           </div>
         </div>
       </li> -->
-      <p>{{tes}}</p>
-      <li class="item" v-for="(item ,index ) in s1_strong" :key="index">
+      <li class="item" v-for="(item ,index ) in data" :key="index">
         <strong class="first" @touchstart='ts' @touchend='te' ref="strong">
           {{item.strong}}
           <Audio :mp3_name='item.mp3' />
         </strong>
-        <div class="content" v-for="(content , index ) in item.contents" :key="index">
-          <span>{{content.span}}</span>
-          <p>{{content.p}}</p>
+        <div class="content" >
+          <span>{{item.c1}}</span>
+          <p>{{item.zh1}}</p>
+        </div>
+
+        <div class="content" >
+          <span>{{item.c2}}</span>
+          <p>{{item.zh2}}</p>
         </div>
       </li>
 
@@ -100,9 +104,7 @@ export default {
           }
         },
       },
-      tes: '',
-      s1_strong: [],
-      s1_contents:[]
+      data: [],
     }
   },
   components: {
@@ -113,49 +115,12 @@ export default {
     this._initData()
   },
   methods: {
-    handleData(data) {
-      let arr = []
-      data.forEach((item) => {
-        let obj = {}
-        obj['strong'] = item.strong
-        obj['mp3'] = item.mp3
-        arr.push(obj)
-      })
-      return arr
-    },
-
-    handleData_1(data){
-      
-      let arr = [1,2,4,1,6,4]
-      let result = []
-
-      for(let i = 0; i < arr.length ; i++){
-        for(let j = i+1; j < arr.length; j++){
-          if(arr[i] === arr[j]){
-            j = ++i
-          }
-        }
-        result.push(arr[i])
-      }
-
-      console.log(result);
-      
-      
-    },
 
     _initData() {
-      fetch('http://localhost:9000/web/xsden/initData_1').then((res) => {
+      fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
         return res.json()
       }).then((myjson) => {
-        // console.log(myjson);
-        
-        this.s1_strong = this.handleData(myjson)
-      })
-
-      fetch('http://localhost:9000/web/xsden/initData_2').then((res) => {
-        return res.json()
-      }).then((myjson) => {
-        this.handleData_1(myjson)
+        this.data = myjson
       })
     },
 

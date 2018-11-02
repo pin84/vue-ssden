@@ -2,21 +2,10 @@
   <div class="section">
     <h3>Section 2 Sentence Analysis</h3>
     <ul class="list">
-      <li class="item">
-        <div class="num">1.</div>
-        <div class="content">
-          <strong>…but recently I’ve started thinking about what the places you arrange to meet say about you. [Para. 1]</strong>
-          <p>【句意】……但最近我开始思考这么一个问题：人们安排的会面地点能反映出这个人的哪些方面呢？</p>
-          <p>【解析】what引导宾语从句，又在宾语从句中作动词say的宾语。</p>
-        </div>
-      </li>
-      <li class="item">
-        <div class="num">2.</div>
-        <div class="content">
-          <strong>...Moss Side, a particularly rough area of Manchester. [Para. 1]</strong>
-          <p>【句意】莫斯赛德是曼彻斯特犯罪率较高的区域。</p>
-          <p>【解析】a particularly rough area of Manchester是Moss Side的同位语，解释说明 Moss Side。a rough area指犯罪率较高的区域，如贩毒和卖淫等。</p>
-        </div>
+      <li class="item" v-for="(item,index) in data" :key="index">
+        <strong>{{item.strong}}</strong>
+        <p>{{item.p1}}</p>
+        <p>{{item.p2}}</p>
       </li>
     </ul>
   </div>
@@ -25,6 +14,25 @@
 
 <script>
 export default {
+  data() {
+    return {
+      data: []
+    }
+  },
+
+  created() {
+    this._initData()
+  },
+
+  methods: {
+    _initData() {
+      fetch('http://192.168.3.107:9000/web/xsden/initData_s2').then((res) => {
+        return res.json()
+      }).then((myjson) => {
+        this.data = myjson
+      })
+    }
+  }
 
 }
 </script>
@@ -42,9 +50,7 @@ export default {
     position relative
     line-height 24px
     .item
-      display flex
       margin-bottom 10px
-      .num 
-        margin-right 10px
-            
+      p
+        text-indent 1em
 </style>

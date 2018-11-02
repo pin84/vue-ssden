@@ -150,11 +150,9 @@ export default {
     this.$root.eventHub.$on('SHNav', this.SHNav)
   },
   methods: {
-    abc() {
-      console.log('abc')
-    },
+   
     SHNav(e) {
-      console.log('shnav', e.target.innerText === '[+]');
+      // console.log('shnav', e.target.innerText === '[+]');
       if (e.target.innerText === '[+]' || e.target.innerText === '[-]') {
         return
       }
@@ -180,7 +178,7 @@ export default {
     // },
 
     initData() {
-      axios.get('http://localhost:9000/web/dfbook/findBookPreview').then((response) => {
+      axios.get('http://192.168.3.107:9000/web/dfbook/findBookPreview').then((response) => {
         this.titles = response.data
       })
     }

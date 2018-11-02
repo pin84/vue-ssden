@@ -1,11 +1,11 @@
 <template>
   <div class="wrapper">
     <Cover class="cover" />
-    <div class="book" @click="toggleTopFoot">
+    <div class="book" @touchend="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
         <router-view />
-        <Nav class="nav"  />
+        <Nav class="nav" />
       </div>
       <Foot class="foot" ref="foot" />
     </div>
@@ -13,7 +13,6 @@
 </template>
 <script>
 
-// import PageToggle from './PageToggle'
 import Nav from './Nav'
 import Top from './topFoot/Top'
 import Foot from './topFoot/Foot'
@@ -26,41 +25,38 @@ export default {
     }
   },
   components: {
-    // PageToggle,
     Nav,
     Top,
     Foot,
     Cover,
   },
-  created() {
-
+  mounted() {
   },
 
   mounted() {
-  },
-  updated() {
-    // this.toggleNav()
+    this.$root.eventHub.$on('toggleTopFoot', (e) => {  //top.vue
+      this.toggleTopFoot(e)
+    })
   },
 
   methods: {
     toggleTopFoot(e) {
-      let target = e.target
-      let wrapper = this.$refs.wrapper,
+      console.log('toggleTopFoot' , e.target);
+      let target = e.target,
         top = this.$refs.top.$el,
         foot = this.$refs.foot.$el
-      if (target.tagName === 'INPUT') { //上一篇 下一篇时
-        return
-      }
-      if (this.TFflag) {
-        if (target.className === 'text' || target.className === 'content' || target.className === 'book') {
+
+      if (target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol') {
+        if (this.TFflag) {
           top.style.transform = `translateY(0%)`
           foot.style.transform = `translateY(0%)`
           this.TFflag = false
+        } else {
+          top.style.transform = `translateY(-100%)`
+          foot.style.transform = `translateY(100%)`
+          this.TFflag = true
         }
-      } else {
-        top.style.transform = `translateY(-100%)`
-        foot.style.transform = `translateY(100%)`
-        this.TFflag = true
+
       }
     },
   }

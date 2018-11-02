@@ -1,6 +1,6 @@
 <template>
   <div class="foot">
-    <PageToggle />
+    <!-- <PageToggle /> -->
     <ul class="list">
       <li @touchstart='liClickStart' @touchend='liClickEnd' v-for="(item,index) in mulu" :key="index" >
         {{item}}
@@ -9,7 +9,7 @@
   </div>
 </template>
 <script>
-import PageToggle from '../PageToggle'
+// import PageToggle from '../PageToggle'
 export default {
   data() {
     return {
@@ -17,7 +17,7 @@ export default {
     }
   },
   components: {
-    PageToggle
+    // PageToggle
   },
   updated() {
     // this.liClick()
@@ -53,12 +53,12 @@ export default {
   background #333
   display flex
   flex-direction column
-  position relative
   .list
     width 90%
     margin 0 auto
     box-sizing border-box
     display flex
+    margin auto
     li
       width 20% 
       text-align center

@@ -8,6 +8,7 @@ import TextA from '../components/article/unit_01/TextA'
 import Section01 from '../components/article/unit_01/Section01'
 import Section02 from '../components/article/unit_01/Section02'
 import UnitTwo from '../components/article/unit_02'
+import partTwo from '../components/article/unit_01/partTwo'
 
 export default new Router({
 
@@ -67,12 +68,9 @@ export default new Router({
       component: Section02,
       meta: { scrollToTop: true }
     },
-
-
     {
-      path: '/Unit2Communication',
-      component: UnitTwo,
-      meta: { scrollToTop: true }
+      path: '/PartTwoGrammarFocus',
+      component: partTwo,
     },
 
   ]

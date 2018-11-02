@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper" class="wrapper" ref="detail">
-    <h1 class="title">{{title}}</h1>
-    <div class="content" v-for="(item,index) in contents" :key="index" @click="_play">
+    <h1 class="title">{{this.title}}</h1>
+    <div class="content" v-for="(item,index) in texts" :key="index" @click="_play">
       <span class="text">
         {{item.text}}
       </span>
@@ -20,7 +20,7 @@ export default {
   data() {
     return {
       title: '',
-      contents: [],
+      texts: [],
       flag: true
     }
   },
@@ -32,7 +32,8 @@ export default {
 
   },
 
-  mounted() {
+  created() {
+    this._initDataText()
     // this.getData('Waiting for Ages!')
     //给侧边导航用
     // this.$root.eventHub.$on('getData', (keyword) => {
@@ -80,14 +81,12 @@ export default {
     },
 
 
-    getData(keyword) {
-      // axios.post('http://data.iathena.top/web/dfbook/findAll',
-      axios.post('http://localhost:9000/web/dfbook/findAll',
-        { keyword: keyword })
+    _initDataText(keyword) {
+      // axios.post('http://data.iathena.top/web/xsden/findAll',
+      axios.post('http://192.168.3.107:9000/web/xsden/initDataText')
         .then((myJson) => {
-          this.contents = myJson.data
+          this.texts = myJson.data
           this.title = myJson.data[0].title
-          this.$root.eventHub.$emit('changeChapter',myJson.data[0].chapter) //paggeToggle.vue
         })
     },
 

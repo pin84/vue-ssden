@@ -1,9 +1,9 @@
 <template>
 
   <li>
-    <div class="title" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType" >
+    <div class="title" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
 
-      <span  @touchstart='ts'  @touchend="toRouter">  {{ model.name }}</span>
+      <span @touchstart='ts' @touchend="toRouter"> {{ model.name }}</span>
 
       <span class="symbol" @touchstart="sts" @touchend='ste' v-if="isFolder">[{{ open ? '-' : '+' }}]</span>
     </div>
@@ -25,7 +25,7 @@ export default {
   data: function () {
     return {
       open: false,
-      url:''
+      url: ''
     }
   },
   computed: {
@@ -42,31 +42,23 @@ export default {
     // console.log(this.model.name );
   },
   methods: {
-    sts(e){
+    sts(e) {
       e.target.style.background = '#6699CC'
     },
-    ste(e){
+    ste(e) {
       e.target.style.background = ''
     },
 
     ts() {
       this.$el.style.background = '#6699CC'
     },
-    toRouter(e){
-       this.$el.style.background = ''
-      let url = e.target.innerText.replace(/\s/g,'')
-      console.log('toRouter====',url);
+    toRouter(e) {
+      this.$el.style.background = ''
+      let url = e.target.innerText.replace(/\s/g, '')
+      console.log('toRouter====', url);
       this.$router.push(`/${url}`)
-
-      // if(!this.open){
-      //   let  url = this.$el.innerText.match(/[a-z0-9A-Z]/g).join('')
-      //   this.url = '/'+ url
-      // }
-
-
-      // console.log(url);
     },
-   
+
     toggle: function () {
       if (this.isFolder) {
         this.open = !this.open
