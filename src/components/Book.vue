@@ -41,7 +41,7 @@ export default {
 
   methods: {
     toggleTopFoot(e) {
-      console.log('toggleTopFoot' , e.target);
+      // console.log('toggleTopFoot' , e.target);
       let target = e.target,
         top = this.$refs.top.$el,
         foot = this.$refs.foot.$el

@@ -7,7 +7,6 @@
 
 
 <script>
-import axios from 'axios'
 export default {
   data() {
     return {
@@ -16,19 +15,11 @@ export default {
     }
   },
   mounted() {
-    this.initData()
-    this.$root.eventHub.$on('changeChapter',(chapter)=>{
+    this.$root.eventHub.$on('changeChapter', (chapter) => {
       this.chapter = chapter
     })
   },
   methods: {
-    initData() {
-      axios.get('http://192.168.3.107:9000/web/xsden/countData').then((json) => {
-      // axios.get('http://data.iathena.top/web/xsden/countData').then((json) => {
-        this.countData = json.data[0].count
-      })
-    },
-
     toPreTouchstart() {
       let pre = this.$refs.pre
       if (this.chapter <= 1) {

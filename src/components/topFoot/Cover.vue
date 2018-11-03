@@ -2,7 +2,7 @@
   <div class="cover" ref="cover" @click="openbook">
     <div class="move" ref="move">
       <div class="img_3d" ref="img_3d">
-        <img src="../../assets/book/cover.jpg"  alt="">
+        <img src="../../assets/book/cover_1.jpg"  alt="">
       </div>
     </div>
   </div>

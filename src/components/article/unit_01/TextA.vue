@@ -14,7 +14,6 @@
 
 
 <script>
-import axios from 'axios'
 import Audio from '../../Audio'
 export default {
   data() {
@@ -82,12 +81,14 @@ export default {
 
 
     _initDataText(keyword) {
-      // axios.post('http://data.iathena.top/web/xsden/initDataText')
-      axios.post('http://192.168.3.107:9000/web/xsden/initDataText')
-        .then((myJson) => {
-          this.texts = myJson.data
-          this.title = myJson.data[0].title
-        })
+      fetch('http://data.iathena.top/web/xsden/initDataText_1').then((res) => {
+      // fetch('http://localhost:9000/web/xsden/initDataText_1').then((res) => {
+        return res.json()
+      }).then((myJson) => {
+        console.log(myJson)
+        this.title = myJson[0].title
+        this.texts = myJson
+      })
     },
 
   }

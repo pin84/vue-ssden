@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.13, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: xsden
 -- ------------------------------------------------------
--- Server version	8.0.12
+-- Server version	8.0.13
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -16,29 +16,12 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `title_table`
+-- Dumping events for database 'xsden'
 --
 
-DROP TABLE IF EXISTS `title_table`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
- SET character_set_client = utf8mb4 ;
-CREATE TABLE `title_table` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
 --
--- Dumping data for table `title_table`
+-- Dumping routines for database 'xsden'
 --
-
-LOCK TABLES `title_table` WRITE;
-/*!40000 ALTER TABLE `title_table` DISABLE KEYS */;
-INSERT INTO `title_table` VALUES (1,'Waiting for Ages!');
-/*!40000 ALTER TABLE `title_table` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -49,4 +32,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-02 15:40:47
+-- Dump completed on 2018-11-03 16:29:40

@@ -56,6 +56,31 @@ export default {
       this.$el.style.background = ''
       let url = e.target.innerText.replace(/\s/g, '')
       console.log('toRouter====', url);
+
+      switch (url) {
+        case '名词':
+          url = 'PartTwoGrammarFocus01'
+          break
+        case '1.名词的分类':
+          url = 'PartTwoGrammarFocus02'
+          break
+        case '2.名词的格':
+          url = 'PartTwoGrammarFocus03'
+          break
+        case '词义的选择':
+          url = 'PartFourTranslationFocus01'
+          break
+        case '1.根据搭配确定词义':
+          url = 'PartFourTranslationFocus02'
+          break
+        case '2.根据上下文确定词义':
+          url = 'PartFourTranslationFocus03'
+          break
+        case '3.根据词性确定词义':
+          url = 'PartFourTranslationFocus04'
+          break
+
+      }
       this.$router.push(`/${url}`)
     },
 

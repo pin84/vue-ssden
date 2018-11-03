@@ -13,7 +13,6 @@
 
 </template>
 <script>
-import axios from 'axios'
 import item from './topFoot/Tree'
 export default {
   data() {
@@ -146,13 +145,12 @@ export default {
     item
   },
   mounted() {
-    // this.initData()
     this.$root.eventHub.$on('SHNav', this.SHNav)
   },
   methods: {
    
     SHNav(e) {
-      // console.log('shnav', e.target.innerText === '[+]');
+      // console.log('shnav', e.target.innerText);
       if (e.target.innerText === '[+]' || e.target.innerText === '[-]') {
         return
       }
@@ -163,26 +161,9 @@ export default {
         this.$el.style.transform = 'translateX(-100%)'
         this.flag = false
       }
-
     },
 
-    // liTouchstart(e) {
-    //   e.target.style.background = '#FFCC00'
-    // },
-
-    // toDetailPage(e) {
-    //   let target = e.target
-    //   target.style.background = ''
-    //   this.$root.eventHub.$emit('getData', target.innerText) //detail.vue
-    //   this.$root.eventHub.$emit('showNav') //book.vue
-    // },
-
-    initData() {
-      axios.get('http://192.168.3.107:9000/web/dfbook/findBookPreview').then((response) => {
-      // axios.get('http://data.iathena.top/web/dfbook/findBookPreview').then((response) => {
-        this.titles = response.data
-      })
-    }
+   
 
 
   }
