@@ -16,7 +16,7 @@ import partFour from '../components/article/unit_01/partFour'
 
 export default new Router({
 
-  mode: 'history',
+  // mode: 'history',
   scrollBehavior: (to, from, savedPosition) => {
     // console.log(to.path, from, savedPosition);
     let position = {}
