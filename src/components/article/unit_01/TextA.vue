@@ -15,7 +15,7 @@
       </span>
     </div>
     <div class="decorate">
-      <img src="../../../assets/img/grid.jpg" alt="">
+      <img src="../../../assets/img/grid.jpg" >
     </div>
 
     <!-- <PageToggle /> -->
@@ -106,9 +106,9 @@ export default {
       }
     },
     _initDataText(keyword) {
-      // fetch('http://data.iathena.top/web/xsden/initDataText_1').then((res) => {
+      fetch('http://data.iathena.top/web/xsden/initDataText_1').then((res) => {
       // fetch('http://localhost:9000/web/xsden/initDataText_1').then((res) => {
-      fetch('http://192.168.3.107:9000/web/xsden/initDataText_1').then((res) => {
+      // fetch('http://192.168.3.107:9000/web/xsden/initDataText_1').then((res) => {
         return res.json()
       }).then((myJson) => {
         this.title = myJson[0].title

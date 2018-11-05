@@ -82,9 +82,9 @@ export default {
   methods: {
 
     _initData() {
-      // fetch('http://data.iathena.top/web/xsden/initData_1').then((res) => {
-      fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
-      // fetch('http://localhost:9000/web/xsden/initData_1').then((res) => {
+      fetch('http://data.iathena.top/web/xsden/initData_1').then((res) => {
+        // fetch('http://localhost:9000/web/xsden/initData_1').then((res) => {
+      // fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
         return res.json()
       }).then((myjson) => {
         this.data = myjson
