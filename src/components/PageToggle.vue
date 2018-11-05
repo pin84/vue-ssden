@@ -4,7 +4,7 @@
     <input class="next" ref="next" value="下一篇" readonly unselectable="on" @touchstart="toNextTouchstart" @touchend="toNextTouchend" />
   </div> -->
   <div class="wrapper">
-    <span class="preview"> aaaaaaa</span> <span class="next">bbbbbbbb</span>
+    <span class="preview" > aaaaaaa</span> <span class="next">bbbbbbbb</span>
   </div>
 </template>
 

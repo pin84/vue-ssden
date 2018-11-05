@@ -19,6 +19,7 @@ export default {
       this.openbook()
     })
   },
+  
   methods: {
     openbook() {
       let img_3d = this.$refs.img_3d,

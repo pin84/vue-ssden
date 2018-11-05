@@ -20,10 +20,12 @@ export default {
     },
 
     backTouchend(e){
+      console.log('aaaaaaaa');
+      
       let back = this.$refs.back
       back.style.backgroundColor = ''
       this.$root.eventHub.$emit('closeBook') //cover.vue
-      this.$root.eventHub.$emit('toggleTopFoot',e) //book.vue
+      // this.$root.eventHub.$emit('toggleTopFoot',e) //book.vue
     }
   }
 }
