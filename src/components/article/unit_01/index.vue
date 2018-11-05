@@ -33,4 +33,5 @@ export default {
   position relative
   .title
     text-align center
+    background url(../../../assets/img/grid_1.jpg) no-repeat center center 
 </style>

@@ -38,4 +38,8 @@ export default {
   font-size:1.6rem
 }
 
+.router-link-active{
+  background: #006699;
+}
+
 </style>

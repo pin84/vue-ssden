@@ -26,8 +26,8 @@ export default {
 
   methods: {
     _initData() {
-      fetch('http://data.iathena.top/web/xsden/initData_s2').then((res) => {
-      // fetch('http://192.168.3.107:9000/web/xsden/initData_s2').then((res) => {
+      // fetch('http://data.iathena.top/web/xsden/initData_s2').then((res) => {
+      fetch('http://192.168.3.107:9000/web/xsden/initData_s2').then((res) => {
       // fetch('http://localhost:9000/web/xsden/initData_s2').then((res) => {
         return res.json()
       }).then((myjson) => {
@@ -48,6 +48,7 @@ export default {
     color red
     text-align center
     margin 10px 0
+    background url(../../../assets/img/grid_1.jpg)   no-repeat
   .list
     position relative
     line-height 24px

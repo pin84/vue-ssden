@@ -1,7 +1,10 @@
 <template>
-  <div class="wrapper">
+  <!-- <div class="wrapper">
     <input class="preview" ref="pre" value="上一篇" readonly unselectable="on" @touchstart="toPreTouchstart" @touchend="toPreTouchend" />
     <input class="next" ref="next" value="下一篇" readonly unselectable="on" @touchstart="toNextTouchstart" @touchend="toNextTouchend" />
+  </div> -->
+  <div class="wrapper">
+    <span class="preview"> aaaaaaa</span> <span class="next">bbbbbbbb</span>
   </div>
 </template>
 
@@ -11,15 +14,20 @@ export default {
   data() {
     return {
       chapter: 1,
-      countData: 0
+      countData: 0,
+      routers: ['a', 'b', 'c', 'd', 'e', 'f']
     }
   },
   mounted() {
-    this.$root.eventHub.$on('changeChapter', (chapter) => {
-      this.chapter = chapter
-    })
+    console.log('aaaaaa=====',window.location.href);
+    
   },
   methods: {
+
+
+
+    /*
+
     toPreTouchstart() {
       let pre = this.$refs.pre
       if (this.chapter <= 1) {
@@ -65,6 +73,7 @@ export default {
       }
       this.$root.eventHub.$emit('getData', this.chapter)
     }
+    */
 
   }
 }
@@ -74,20 +83,22 @@ export default {
 <style lang='stylus' scoped>
 .wrapper
   display flex
-  justify-content space-around
-  margin-top 10px
-  margin-bottom 10px
-  .preview , .next
-    width 60px
+  justify-content space-between
+  padding-top 20px 
+  border-top 1px solid #000
+  color green
+  .next
+    padding-right 20px
+  .preview::before, .next::after
+    display inline-block
+    content ''
+    width 20px
     height 20px
-    text-align center
-    background #99CCCC
-    outline none
-    border 0
-    // padding 3px 15px
-    border-radius 5px
-    &.preview
-      background gray
-    // &.next
-    //   margin-left 10px
+    vertical-align top
+  .preview::before
+    background url(../assets/icon/toLeft.png) no-repeat center center
+  .next::after
+    transform rotate(180deg)
+    background url(../assets/icon/toLeft.png) no-repeat center center
+      
 </style>

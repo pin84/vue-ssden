@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Cover class="cover" />
+    <!-- <Cover class="cover" /> -->
     <div class="book" @click="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
@@ -41,12 +41,10 @@ export default {
 
   methods: {
     toggleTopFoot(e) {
-      // console.log('toggleTopFoot' , e.target);
       let target = e.target,
         top = this.$refs.top.$el,
         foot = this.$refs.foot.$el
-
-      if (target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol') {
+      if (target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol' && target.className.split(' ')[0] !== 'CH_EN') {
         if (this.TFflag) {
           top.style.transform = `translateY(0%)`
           foot.style.transform = `translateY(0%)`
@@ -56,7 +54,6 @@ export default {
           foot.style.transform = `translateY(100%)`
           this.TFflag = true
         }
-
       }
     },
   }
@@ -83,7 +80,6 @@ export default {
       position relative
       box-sizing border-box
       margin-bottom 20px
-      // margin-top -40px //减去TOP的高度
       .nav
         position fixed
         top 0

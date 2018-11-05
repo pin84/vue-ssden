@@ -82,8 +82,8 @@ export default {
   methods: {
 
     _initData() {
-      fetch('http://data.iathena.top/web/xsden/initData_1').then((res) => {
-      // fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
+      // fetch('http://data.iathena.top/web/xsden/initData_1').then((res) => {
+      fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
       // fetch('http://localhost:9000/web/xsden/initData_1').then((res) => {
         return res.json()
       }).then((myjson) => {
@@ -111,7 +111,15 @@ export default {
   h3
     color red
     text-align center
-    margin 10px 0 
+    margin 10px 0
+    &::before
+      content ''
+      display inline-block
+      width 20px
+      height 20px
+      background url(../../../assets/icon/whisper_1.png)   center center
+      margin-right 10px
+      vertical-align top
   .list
     position relative
     line-height 24px

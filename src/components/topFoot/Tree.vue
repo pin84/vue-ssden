@@ -55,8 +55,6 @@ export default {
     toRouter(e) {
       this.$el.style.background = ''
       let url = e.target.innerText.replace(/\s/g, '')
-      console.log('toRouter====', url);
-
       switch (url) {
         case '名词':
           url = 'PartTwoGrammarFocus01'

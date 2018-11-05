@@ -1,30 +1,44 @@
 <template>
   <div id="wrapper" class="wrapper" ref="detail">
+
     <h1 class="title">{{this.title}}</h1>
-    <div class="content" v-for="(item,index) in texts" :key="index" @click="_play">
-      <span class="text">
+    <div class="text" v-for="(item,index) in texts" :key="index" @click="_play">
+      <span class="text_en">
         {{item.text}}
       </span>
+      <span class="text_ch">
+        {{item.text_ch}}
+      </span>
+      <span class="CH_EN" @click="CH_EN"></span>
       <span class="audio" ref="audiobox">
         <Audio :mp3_name='item.mp3' />
       </span>
     </div>
+    <div class="decorate">
+      <img src="../../../assets/img/grid.jpg" alt="">
+    </div>
+
+    <!-- <PageToggle /> -->
   </div>
 </template>
 
 
 <script>
 import Audio from '../../Audio'
+import PageToggle from '../../PageToggle'
 export default {
   data() {
     return {
       title: '',
       texts: [],
-      flag: true
+      flag: true,
+      CH_EN_flag: true
     }
   },
+
   components: {
-    Audio
+    Audio,
+    PageToggle
   },
 
   computed: {
@@ -33,20 +47,33 @@ export default {
 
   created() {
     this._initDataText()
-    // this.getData('Waiting for Ages!')
-    //给侧边导航用
-    // this.$root.eventHub.$on('getData', (keyword) => {
-    //   this.getData(keyword)
-    // })
   },
   methods: {
-    _test() {
-      let detail = this.$refs.detail
-      detail.addEventListener('click', function (e) {
-        console.log(e.target);
+    CH_EN(e) {
+      let text_ch = e.target.previousSibling,
+        text_en = text_ch.previousSibling
+      if (this.CH_EN_flag) {
+        text_en.style.opacity = '0'
+        text_ch.style.opacity = '1'
+        setTimeout(()=>{
+          text_ch.style.display = 'inline'
+          text_en.style.display = 'none'
+        },600)
+        e.target.className = 'CH_EN en'
+        this.CH_EN_flag = false
+      } else {
+        text_ch.style.opacity = '0'
+        text_en.style.opacity = '1'
+        setTimeout(()=>{
+          text_en.style.display = 'inline'
+          text_ch.style.display = 'none'
+        },600)
+        e.target.className = 'CH_EN ch'
+        this.CH_EN_flag = true
+      }
 
-      }, false)
     },
+
     _play(e) {
       // console.log('lick');
       let target = e.target
@@ -78,14 +105,12 @@ export default {
         }
       }
     },
-
-
     _initDataText(keyword) {
-      fetch('http://data.iathena.top/web/xsden/initDataText_1').then((res) => {
+      // fetch('http://data.iathena.top/web/xsden/initDataText_1').then((res) => {
       // fetch('http://localhost:9000/web/xsden/initDataText_1').then((res) => {
+      fetch('http://192.168.3.107:9000/web/xsden/initDataText_1').then((res) => {
         return res.json()
       }).then((myJson) => {
-        console.log(myJson)
         this.title = myJson[0].title
         this.texts = myJson
       })
@@ -98,35 +123,54 @@ export default {
 
 
 <style lang='stylus' scoped>
-*
-  margin 0
-  padding 0
-
-
-
 .wrapper
   position relative
-  text-indent 2em 
+  .decorate
+    width 100%
+    margin 10px 0
+    img
+      width 100%
+      height 100%
   .title
     font-size 18px
     text-align center
     text-indent 0
     padding 5px 0
-  .content
-    .text, 
-      display inline-block
-      line-height 24px
+    margin 10px 0
+    background url(../../../assets/img/grid_1.jpg)  no-repeat
+  .text
+    line-height 24px
+    text-indent 2em
+    .text_en
+      transition 800ms
+    .text_ch
+      transition 800ms
+      display none
     .audio
       display inline-block
       width 24px
       height 24px
+      padding 0px 5px
       background url(../../../assets/audio.png) no-repeat center
-      // background-color #6699CC
       z-index 9999
+      vertical-align top
       &.start
         background url(../../../assets/audio.png) no-repeat center
       &.stop
         background url(../../../assets/audio-off.png) no-repeat center
+    .CH_EN
+      display inline-block
+      transition 800ms
+      width 24px
+      height 24px 
+      vertical-align top
+      padding 0px 5px
+      background url(../../../assets/icon/text_ch.png) no-repeat center
+      &.en
+        background url(../../../assets/icon/text_en.png) no-repeat center
+      &.ch
+        background url(../../../assets/icon/text_ch.png) no-repeat center
+
 
   
 </style>
