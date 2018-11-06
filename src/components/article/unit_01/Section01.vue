@@ -108,10 +108,19 @@ export default {
 <style lang='stylus' scoped>
 .section
   position relative
+  background #f5f5f5
+  padding 5px
+  box-sizing border-box
   h3
-    color red
+    color #fff
+    width 80%
     text-align center
-    margin 10px 0
+    margin 20px auto
+    padding 20px 0
+    background url(../../../assets/img/s1_item_bg.jpg) no-repeat center center 
+    background-size cover
+    transform skewX(10deg)
+
     &::before
       content ''
       display inline-block
@@ -125,6 +134,16 @@ export default {
     line-height 24px
     .item
       position relative
+      border 1px solid black
+      margin-bottom 10px
+      border-radius 5px
+      background #fff
+      padding 5px
+      box-sizing border-box
+      box-shadow 3px 3px 5px #666
+      // background url(../../../assets/img/s1_item_bg.jpg) no-repeat center center 
+      // background-size cover
+      // color #fff
       .content
         margin-left 1em
         display flex

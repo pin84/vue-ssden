@@ -1,7 +1,7 @@
 <template>
   <div id="wrapper" class="wrapper" ref="detail">
 
-    <h1 class="title">{{this.title}}</h1>
+    <h2 class="title">{{this.title}}</h2>
     <div class="text" v-for="(item,index) in texts" :key="index" @click="_play">
       <span class="text_en">
         {{item.text}}
@@ -13,9 +13,6 @@
       <span class="audio" ref="audiobox">
         <Audio :mp3_name='item.mp3' />
       </span>
-    </div>
-    <div class="decorate">
-      <img src="../../../assets/img/grid.jpg" >
     </div>
 
     <!-- <PageToggle /> -->
@@ -125,19 +122,18 @@ export default {
 <style lang='stylus' scoped>
 .wrapper
   position relative
-  .decorate
-    width 100%
-    margin 10px 0
-    img
-      width 100%
-      height 100%
+  padding 5px 
+  box-sizing border-box
+  background #f9f9f9
   .title
-    font-size 18px
+    width 80%
+    margin 20px auto
+    color #fff
     text-align center
-    text-indent 0
-    padding 5px 0
-    margin 10px 0
-    background url(../../../assets/img/grid_1.jpg)  no-repeat
+    padding 20px 0
+    background url(../../../assets/img/s1_item_bg.jpg) no-repeat center center 
+    background-size cover
+    transform skewX(160deg)
   .text
     line-height 24px
     text-indent 2em

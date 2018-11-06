@@ -44,16 +44,26 @@ export default {
 .section
   position relative
   width 100%
+  padding 5px
+  box-sizing border-box
   h3
-    color red
+    color #fff
+    width 80%
     text-align center
-    margin 10px 0
-    background url(../../../assets/img/grid_1.jpg)   no-repeat
+    padding 20px 0
+    margin 20px auto
+    background url(../../../assets/img/s1_item_bg.jpg) no-repeat center center 
+    background-size cover
+    transform skewX(160deg)
   .list
     position relative
     line-height 24px
     .item
       margin-bottom 10px
+      border 1px solid black
+      border-radius 5px 
+      padding 5px 
+      box-shadow 3px 3px 5px #999 inset
       p
         text-indent 1em
 </style>

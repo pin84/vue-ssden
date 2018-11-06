@@ -76,7 +76,6 @@ export default {
     position relative
     height 100vh
     .main
-      padding 5px
       position relative
       box-sizing border-box
       margin-bottom 20px

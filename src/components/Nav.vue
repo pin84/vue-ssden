@@ -173,7 +173,7 @@ export default {
 .wrapper
   width 100% 
   height 100%
-  background #FFFFCC
+  background #99CC99
   position relative
   overflow-y auto
   overflow-x auto
@@ -188,26 +188,12 @@ export default {
     margin-left -8px
     padding 10px 0 5px 10px
     box-sizing border-box
-    border-bottom 1px solid #CCCCCC
+    border-bottom 1px solid #000
   #list
     margin-top 10px
     margin-left -5px
-    line-height 1.5em
+    line-height 1.8em
     list-style-type disc
     box-sizing:border-box;
-  // .list
-  //   padding 10px
-  //   box-sizing border-box
-  //   position fixed
-  //   width 97%
-  //   top 66px
-  //   bottom 0
-  //   overflow-y scroll
-  //   overflow-x hidden
-  //   li
-  //     padding 5px
-  //     border-bottom 1px solid #ccc
-  //     &:first-child
-  //       padding-top 10px
 
 </style>

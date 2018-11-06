@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <h2>Part Four Translation Focus</h2>
-    <div class="ex"  ref="c">
+    <h2 class="title">Part Four Translation Focus</h2>
+    <div class="ex">
       <h3>词义的选择</h3>
       <p>词是句子的基本构建单位。如何选择正确的词义，是翻译过程中首先要解决的问题。在英语和汉语中，一词多义的现象都十分普遍。同样，一个简单的字或词语，在不同的上下文中，就可能有不同的含义，这就需要我们依靠具体的语境来判断某个字或词语的意义。</p>
       <p>在翻译过程中，如果仅拘泥于词典提供的基本释义，机械地在两种语言中寻找对应的词语，是有碍译文质量的。译者只有在掌握词典基本释义的基础上，根据具体的语言环境和搭配习惯确定和选择词义，才能进行不同的翻译搭配，并确定词义。</p>
@@ -75,7 +75,7 @@
 <script>
 export default {
   mounted(){
-    console.log(this.$refs.c.offsetTop)
+    // console.log(this.$refs.c.offsetTop)
   }
 }
 </script>
@@ -84,19 +84,34 @@ export default {
 <style lang='stylus' scoped>
 .wrapper
   position relative
-  text-align center
   line-height 24px
-  h2, h3
-    color red
+  box-sizing border-box
+  .title
     padding 10px 0
+    text-align center 
+    padding 20px 0 5px 0
+    background #339999
+    box-shadow 3px 3px 5px #666
+    margin-bottom 6px
   .ex
-    position relative
-    p 
-      line-height 24px
-      text-align left 
-      text-indent 1em  
+    padding 5px
+    h3 
+      color #fff
+      width 80%
+      text-align center
+      padding 10px 0
+      margin 10px auto
+      background url(../../../../assets/img/s1_item_bg.jpg) no-repeat center center 
+      background-size cover
+      transform skewX(160deg)
+    p
+      text-indent 1em
   .detail
-    text-align left
+    padding 5px
+    h3
+      display inline
+      color #006699
+      border-bottom 2px solid #009966
     .list
       width 100%
       li

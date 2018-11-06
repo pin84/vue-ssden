@@ -1,8 +1,6 @@
 <template>
   <div class="wrapper">
-    <div class="ex">
-      <h4>2. 名词的格</h4>
-    </div>
+    <h3 class="title">2. 名词的格</h3>
     <ul class="list">
       <li class="item">
         <h4>2.1 名词所有格的构成</h4>
@@ -59,25 +57,33 @@ export default {
 <style lang='stylus' scoped>
 .wrapper
   width 100%
-  .ex
-    h4
-      color red
-      padding 10px 0
-      text-align center
-    p
-      text-indent 1em
-      line-height 24px
+  padding 5px
+  box-sizing border-box
+  background #f8f8f8
+  .title
+    color #fff
+    width 80%
+    text-align center
+    padding 10px 0
+    margin 10px auto
+    background url(../../../../assets/img/s1_item_bg.jpg) no-repeat center center 
+    background-size cover
+    transform skewX(160deg)
   .list
     width 100%
     .item
-      margin-bottom 10px  
+      padding 5px 
+      margin 20px 0 
       line-height 24px  
+      box-shadow 3px 5px 5px #999
+      background #fff
       h4
-        color red
-        padding 10px 0
+        display inline-block
+        color #003366
+        border-bottom 2px solid #009966
+        margin-bottom 10px
       p
         text-indent 1em
-
       .middle
         margin 10px 0 0 0 
       .it
