@@ -44,7 +44,7 @@ export default {
       let target = e.target,
         top = this.$refs.top.$el,
         foot = this.$refs.foot.$el
-      if (target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol' && target.className.split(' ')[0] !== 'CH_EN') {
+      if (target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol' && target.className.split(' ')[0] !== 'CH_EN' && target.className !== 'preview' && target.className !== 'next') {
         if (this.TFflag) {
           top.style.transform = `translateY(0%)`
           foot.style.transform = `translateY(0%)`
@@ -62,7 +62,7 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .wrapper
-  width 100%
+  width 100vw
   .cover
     position fixed 
     width 100%

@@ -25,7 +25,8 @@ export default {
   data: function () {
     return {
       open: false,
-      url: ''
+      
+        
     }
   },
   computed: {
@@ -55,15 +56,21 @@ export default {
     toRouter(e) {
       this.$el.style.background = ''
       let url = e.target.innerText.replace(/\s/g, '')
+
+
+
       switch (url) {
         case '名词':
-          url = 'PartTwoGrammarFocus01'
+          // url = 'PartTwoGrammarFocus01'
+          return
           break
         case '1.名词的分类':
-          url = 'PartTwoGrammarFocus02'
+          // url = 'PartTwoGrammarFocus02'
+          return
           break
         case '2.名词的格':
-          url = 'PartTwoGrammarFocus03'
+          // url = 'PartTwoGrammarFocus03'
+          return
           break
         case '词义的选择':
           url = 'PartFourTranslationFocus01'
@@ -77,7 +84,6 @@ export default {
         case '3.根据词性确定词义':
           url = 'PartFourTranslationFocus04'
           break
-
       }
       this.$router.push(`/${url}`)
     },

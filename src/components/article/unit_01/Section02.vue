@@ -8,16 +8,21 @@
         <p>{{item.p2}}</p>
       </li>
     </ul>
+    <PageToggle />
   </div>
 </template>
 
 
 <script>
+import PageToggle from '../../PageToggle'
 export default {
   data() {
     return {
       data: []
     }
+  },
+  components:{
+    PageToggle
   },
 
   created() {

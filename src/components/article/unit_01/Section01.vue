@@ -26,12 +26,14 @@
         <li>3.	Moss Side [] 莫斯赛德（地名）</li>
       </ul>
     </div>
+    <PageToggle />
   </div>
 </template>
 
 
 <script>
 import Audio from '../../Audio'
+import PageToggle from '../../PageToggle'
 export default {
   data() {
     return {
@@ -73,7 +75,8 @@ export default {
     }
   },
   components: {
-    Audio
+    Audio,
+    PageToggle
   },
 
   mounted() {
@@ -111,6 +114,7 @@ export default {
   background #f5f5f5
   padding 5px
   box-sizing border-box
+  
   h3
     color #fff
     width 80%

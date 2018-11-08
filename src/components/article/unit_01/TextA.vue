@@ -15,7 +15,7 @@
       </span>
     </div>
 
-    <!-- <PageToggle /> -->
+    <PageToggle />
   </div>
 </template>
 
@@ -121,10 +121,9 @@ export default {
 
 <style lang='stylus' scoped>
 .wrapper
-  position relative
+  // position relative
   padding 5px 
   box-sizing border-box
-  background #f9f9f9
   background #fff
   .title
     width 80%

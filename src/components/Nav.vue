@@ -27,13 +27,9 @@ export default {
             {
               name: 'Part One Reading',
               children: [
-                {
-                  name: 'Text A Waiting for Ages!',
-                  children: [
-                    { name: 'Section 1 Vocabulary' },
-                    { name: 'Section 2 Sentence Analysis' }
-                  ]
-                },
+                { name: 'Text A Waiting for Ages!' },
+                { name: 'Section 1 Vocabulary' },
+                { name: 'Section 2 Sentence Analysis' }
               ]
             },
             {
@@ -148,7 +144,7 @@ export default {
     this.$root.eventHub.$on('SHNav', this.SHNav)
   },
   methods: {
-   
+
     SHNav(e) {
       // console.log('shnav', e.target.innerText);
       if (e.target.innerText === '[+]' || e.target.innerText === '[-]') {
@@ -163,7 +159,7 @@ export default {
       }
     },
 
-   
+
 
 
   }
