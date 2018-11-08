@@ -173,7 +173,8 @@ export default {
 .wrapper
   width 100% 
   height 100%
-  background #99CC99
+  background #003333
+  color #fff
   position relative
   overflow-y auto
   overflow-x auto

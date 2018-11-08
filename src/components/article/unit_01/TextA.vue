@@ -125,6 +125,7 @@ export default {
   padding 5px 
   box-sizing border-box
   background #f9f9f9
+  background #fff
   .title
     width 80%
     margin 20px auto
@@ -137,6 +138,7 @@ export default {
   .text
     line-height 24px
     text-indent 2em
+    color #000
     .text_en
       transition 800ms
     .text_ch

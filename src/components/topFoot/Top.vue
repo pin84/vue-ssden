@@ -6,8 +6,8 @@
    @touchend="backTouchend"
    ></div>
   <div class="right">
-    <span class="search"></span>
-    <span></span>
+    <!-- <span class="search"></span> -->
+    <!-- <span></span> -->
   </div>
 </div>
 </template>
@@ -20,8 +20,6 @@ export default {
     },
 
     backTouchend(e){
-      console.log('aaaaaaaa');
-      
       let back = this.$refs.back
       back.style.backgroundColor = ''
       this.$root.eventHub.$emit('closeBook') //cover.vue

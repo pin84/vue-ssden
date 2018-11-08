@@ -57,7 +57,7 @@ export default new Router({
   routes: [
     {
       path:'/',
-      component: UnitOne,
+      component: TextA,
     },
     {
       path: '/Unit1Communication',

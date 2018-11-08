@@ -13,7 +13,7 @@
 export default {
   data() {
     return {
-      mulu: ['目录', '设置']
+      mulu: ['目录']
     }
   },
   components: {
