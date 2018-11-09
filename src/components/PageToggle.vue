@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <span class="preview" @click="preview" v-if="previewFlag"> {{spanPre}}</span>
+    <span class="preview" @click="preview" v-if="previewFlag" ref="preview"> {{spanPre}}</span>
     <span class="next" @click="next" v-if="nextFlag">{{spanTNext}}</span>
   </div>
 </template>
@@ -9,51 +9,53 @@
 export default {
   data() {
     return {
-      routers: ['TextAWaitingforAges!', 'Section1Vocabulary', 'Section2SentenceAnalysis','PartTwoGrammarFocus01','PartTwoGrammarFocus02','BusinessCard','PartFourTranslationFocus01'],
+      routers: ['TextAWaitingforAges!', 'Section1Vocabulary', 'Section2SentenceAnalysis', 'PartTwoGrammarFocus01', 'PartTwoGrammarFocus02', 'BusinessCard', 'PartFourTranslationFocus01'],
       previewFlag: false,
       nextFlag: false,
-      currtUrl: ''
+      currentUrl: ''
     }
   },
   computed: {
-    
+
     spanPre: function () {
-      return this.routers[this.routers.indexOf(this.currtUrl) - 1]
+      return this.routers[this.routers.indexOf(this.currentUrl) - 1]
     },
     spanTNext: function () {
-      return this.routers[this.routers.indexOf(this.currtUrl) + 1]
+      return this.routers[this.routers.indexOf(this.currentUrl) + 1]
     }
   },
-  mounted(){
-    this.currtUrl = window.location.href.split('#')[1].substr(1)
-    this.previewFlag = this.currtUrl === this.routers[0] ? false : true
-    this.nextFlag = this.currtUrl === this.routers[this.routers.length - 1] ? false : true
-
-    this.$root.eventHub.$on('toPreview',()=>{
-       this.preview()
+  mounted() {
+    this.currentUrl = window.location.href.split('#')[1].substr(1)
+    this.$root.eventHub.$on('toPreview', () => {
+      this.preview()
     })
-    this.$root.eventHub.$on('toNext',()=>{
-       this.next()
+    this.$root.eventHub.$on('toNext', () => {
+      this.next()
     })
   },
   created() {
+    this.previewFlag = this.currentUrl === this.routers[0] ? false : true
+    this.nextFlag = this.currentUrl === this.routers[this.routers.length - 1] ? false : true
   },
 
   methods: {
     preview() {
-      let url = this.routers[this.routers.indexOf(this.currtUrl) - 1]
-      if (this.currtUrl === this.routers[0]) {
+      let url = this.routers[this.routers.indexOf(this.currentUrl) - 1]
+      if (this.currentUrl === this.routers[0]) {
         return
       }
       this.$router.push(`${url}`)
+      this.currentUrl = window.location.href.split('#')[1].substr(1)
     },
 
     next() {
-      let url = this.routers[this.routers.indexOf(this.currtUrl) + 1]
-      if (this.currtUrl === this.routers[this.routers.length - 1]) {
+      let url = this.routers[this.routers.indexOf(this.currentUrl) + 1]
+      if (this.currentUrl === this.routers[this.routers.length - 1]) {
         return
       }
       this.$router.push(`${url}`)
+      this.currentUrl = window.location.href.split('#')[1].substr(1)
+
     }
   }
 }
@@ -63,12 +65,15 @@ export default {
 <style lang='stylus' scoped>
 .wrapper
   width 100%
+  height 60px
+  background #fff
   display flex
   justify-content space-between
   border-top 1px solid #000
   color green
   margin-top 20px
   box-sizing border-box
+  font-size 1.8rem
   .preview, .next
     width 40%
     padding 20px 0

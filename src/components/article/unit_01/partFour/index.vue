@@ -68,7 +68,7 @@
         </li>
       </ul>
     </div>
-    <PageToggle />
+    <!-- <PageToggle /> -->
   </div>
 </template>
 

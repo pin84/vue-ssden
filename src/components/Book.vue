@@ -7,8 +7,9 @@
         <router-view />
         <Nav class="nav" />
       </div>
-      <Foot class="foot" ref="foot" />
+      <!-- <Foot class="foot" ref="foot" /> -->
     </div>
+    <PageToggle  id="pageToggle"/>
   </div>
 </template>
 <script>
@@ -17,6 +18,7 @@ import Nav from './Nav'
 import Top from './topFoot/Top'
 import Foot from './topFoot/Foot'
 import Cover from './topFoot/Cover'
+import PageToggle from './PageToggle'
 export default {
   data() {
     return {
@@ -31,6 +33,7 @@ export default {
     Top,
     Foot,
     Cover,
+    PageToggle
   },
   created() {
 
@@ -86,17 +89,17 @@ export default {
 
     toggleTopFoot(e) {
       let target = e.target,
-        top = this.$refs.top.$el,
-        foot = this.$refs.foot.$el
+        top = this.$refs.top.$el
+        // foot = this.$refs.foot.$el
 
       if (target.parentNode.id !== 'isToggle' || target.className.split(' ')[1] === 'nav') {
         if (this.TFflag && target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol' && target.className.split(' ')[0] !== 'CH_EN' && target.className !== 'preview' && target.className !== 'next') {
           top.style.transform = `translateY(0%)`
-          foot.style.transform = `translateY(0%)`
+          // foot.style.transform = `translateY(0%)`
           this.TFflag = false
         } else {
           top.style.transform = `translateY(-100%)`
-          foot.style.transform = `translateY(100%)`
+          // foot.style.transform = `translateY(100%)`
           this.TFflag = true
         }
       }
@@ -121,6 +124,7 @@ export default {
     z-index 2
   .book
     position relative
+    padding-bottom 70px
     .main
       position relative
       box-sizing border-box
@@ -138,7 +142,9 @@ export default {
     .foot
       bottom 0
       transform translateY(100%)
-
-
+  #pageToggle
+    position fixed
+    left 0
+    bottom 0
 
 </style>

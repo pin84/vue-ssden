@@ -26,7 +26,7 @@
         <li>3. Moss Side [] 莫斯赛德（地名）</li>
       </ul>
     </div>
-    <PageToggle />
+    <!-- <PageToggle /> -->
   </div>
 </template>
 

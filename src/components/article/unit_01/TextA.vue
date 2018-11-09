@@ -14,7 +14,7 @@
       </span>
     </div>
 
-    <PageToggle />
+    <!-- <PageToggle /> -->
   </div>
 </template>
 

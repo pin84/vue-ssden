@@ -8,7 +8,7 @@
         <p>{{item.p2}}</p>
       </li>
     </ul>
-    <PageToggle />
+    <!-- <PageToggle /> -->
   </div>
 </template>
 

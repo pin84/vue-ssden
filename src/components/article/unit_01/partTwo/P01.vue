@@ -62,7 +62,7 @@
         <p>类似的词还有：equipment, clothing, news, paper, chocolate, grass等。</p>
       </li>
     </ul>
-    <PageToggle />
+    <!-- <PageToggle /> -->
   </div>
 </template>
 
