@@ -41,7 +41,7 @@ export default {
     this.$root.eventHub.$on('toggleTopFoot', (e) => {  //top.vue
       this.toggleTopFoot(e)
     })
-    this.pageChange()
+    // this.pageChange()
   },
   updated() {
 
