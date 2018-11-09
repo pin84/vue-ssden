@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Cover class="cover" />
+    <!-- <Cover class="cover" /> -->
     <div class="book" @click="toggleTopFoot">
       <Top class="top" ref="top" />
       <div class="main">
@@ -20,8 +20,10 @@ import Cover from './topFoot/Cover'
 export default {
   data() {
     return {
-      flag: true,
-      TFflag: true
+      // flag: true,
+      TFflag: true,
+      exclude: ['Unit 1 Communication', 'Part One Reading', 'Part Two Grammar Focus', '名词', 'Part Three Practical Writing', 'Part Four Translation Focus', '词义的选择', '[+]', '[-]']
+
     }
   },
   components: {
@@ -44,8 +46,9 @@ export default {
       let target = e.target,
         top = this.$refs.top.$el,
         foot = this.$refs.foot.$el
-      if (target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol' && target.className.split(' ')[0] !== 'CH_EN' && target.className !== 'preview' && target.className !== 'next') {
-        if (this.TFflag) {
+
+      if (target.parentNode.id !== 'isToggle' || target.className.split(' ')[1] === 'nav') {
+        if (this.TFflag && target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol' && target.className.split(' ')[0] !== 'CH_EN' && target.className !== 'preview' && target.className !== 'next') {
           top.style.transform = `translateY(0%)`
           foot.style.transform = `translateY(0%)`
           this.TFflag = false
@@ -55,6 +58,8 @@ export default {
           this.TFflag = true
         }
       }
+
+
     },
   }
 
@@ -62,7 +67,7 @@ export default {
 </script>
 <style lang='stylus' scoped>
 .wrapper
-  width 100vw
+  width 100%
   .cover
     position fixed 
     width 100%
@@ -74,11 +79,9 @@ export default {
     z-index 2
   .book
     position relative
-    height 100vh
     .main
       position relative
       box-sizing border-box
-      margin-bottom 20px
       .nav
         position fixed
         top 0

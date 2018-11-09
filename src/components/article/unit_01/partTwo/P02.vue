@@ -43,13 +43,18 @@
         <p>2)	They’re freshly baked. I fetched them from the baker’s this morning.</p>
       </li>
     </ul>
+    <PageToggle />
   </div>
+
 </template>
 
 
 <script>
+import PageToggle from '../../../PageToggle'
 export default {
-
+components:{
+  PageToggle
+}
 }
 </script>
 

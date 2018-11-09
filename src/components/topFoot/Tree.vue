@@ -1,7 +1,7 @@
 <template>
 
   <li>
-    <div class="title" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
+    <div id="isToggle" class="title" :class="{bold: isFolder}" @click="toggle" @dblclick="changeType">
 
       <span @touchstart='ts' @touchend="toRouter"> {{ model.name }}</span>
 
@@ -25,8 +25,8 @@ export default {
   data: function () {
     return {
       open: false,
-      
-        
+      excludeUrl: ['Unit1Communication', 'PartOneReading', 'PartTwoGrammarFocus', '名词','PartThreePracticalWriting','PartFourTranslationFocus','词义的选择']
+
     }
   },
   computed: {
@@ -54,37 +54,33 @@ export default {
       this.$el.style.background = '#6699CC'
     },
     toRouter(e) {
+      console.log(e.target.innerText);
+      
       this.$el.style.background = ''
       let url = e.target.innerText.replace(/\s/g, '')
-
-
+      if (this.excludeUrl.indexOf(url) !== -1) {
+        return
+      }
 
       switch (url) {
-        case '名词':
-          // url = 'PartTwoGrammarFocus01'
-          return
-          break
         case '1.名词的分类':
-          // url = 'PartTwoGrammarFocus02'
-          return
+          url = 'PartTwoGrammarFocus01'
           break
         case '2.名词的格':
-          // url = 'PartTwoGrammarFocus03'
-          return
-          break
-        case '词义的选择':
-          url = 'PartFourTranslationFocus01'
+          url = 'PartTwoGrammarFocus02'
           break
         case '1.根据搭配确定词义':
-          url = 'PartFourTranslationFocus02'
+          url = 'PartFourTranslationFocus01'
           break
         case '2.根据上下文确定词义':
-          url = 'PartFourTranslationFocus03'
+          url = 'PartFourTranslationFocus02'
           break
         case '3.根据词性确定词义':
-          url = 'PartFourTranslationFocus04'
+          url = 'PartFourTranslationFocus03'
           break
+     
       }
+
       this.$router.push(`/${url}`)
     },
 

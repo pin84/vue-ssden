@@ -9,42 +9,37 @@
 export default {
   data() {
     return {
-      spanText:['WaitingforAges','Vocabulary','SentenceAnalysis'],
-      routers: ['/TextAWaitingforAges!', '/Section1Vocabulary', '/Section2SentenceAnalysis'],
+      routers: ['TextAWaitingforAges!', 'Section1Vocabulary', 'Section2SentenceAnalysis','PartTwoGrammarFocus01','PartTwoGrammarFocus02','BusinessCard','PartFourTranslationFocus01'],
       previewFlag: true,
       nextFlag: true,
-      currtUrl:''
+      currtUrl: ''
     }
   },
-  computed:{
-    spanPre: function(){
-      return  this.spanText[this.routers.indexOf(this.currtUrl)-1] 
+  computed: {
+    spanPre: function () {
+      return this.routers[this.routers.indexOf(this.currtUrl) - 1]
     },
-    spanTNext: function(){
-      return  this.spanText[this.routers.indexOf(this.currtUrl)+1]
+    spanTNext: function () {
+      return this.routers[this.routers.indexOf(this.currtUrl) + 1]
     }
   },
   created() {
-    this.currtUrl = window.location.href.split('#')[1]
-    
-    this.previewFlag = window.location.href.split('#')[1] === this.routers[0] ? false : true
-    this.nextFlag = window.location.href.split('#')[1] === this.routers[this.routers.length-1] ? false : true
+    this.currtUrl = window.location.href.split('#')[1].substr(1)
+    this.previewFlag = this.currtUrl === this.routers[0] ? false : true
+    this.nextFlag = this.currtUrl === this.routers[this.routers.length - 1] ? false : true
   },
   methods: {
     preview() {
-      let curUrl = window.location.href.split('#')[1]
-      let url = this.routers[this.routers.indexOf(curUrl) - 1]
-
-      if (curUrl === this.routers[0]) {
+      let url = this.routers[this.routers.indexOf(this.currtUrl) - 1]
+      if (this.currtUrl === this.routers[0]) {
         return
       }
       this.$router.push(`${url}`)
     },
 
     next() {
-      let curUrl = window.location.href.split('#')[1]
-      let url = this.routers[this.routers.indexOf(curUrl) + 1]
-      if (curUrl === this.routers[this.routers.length - 1]) {
+      let url = this.routers[this.routers.indexOf(this.currtUrl) + 1]
+      if (this.currtUrl === this.routers[this.routers.length - 1]) {
         return
       }
       this.$router.push(`${url}`)
@@ -63,11 +58,14 @@ export default {
   color green
   margin-top 20px
   box-sizing border-box
-  span
-    padding 10px
-  .next
-    padding-right 20px
-    box-sizing border-box
+  .preview, .next
+    width 40%
+    padding 20px 0
+    white-space nowrap
+    text-overflow ellipsis
+    overflow hidden
+    &.next
+      padding-right 20px
   .preview::before, .next::after
     display inline-block
     content ''

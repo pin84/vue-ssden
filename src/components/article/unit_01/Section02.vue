@@ -2,7 +2,7 @@
   <div class="section">
     <h3>Section 2 Sentence Analysis</h3>
     <ul class="list">
-      <li class="item" v-for="(item,index) in data" :key="index">
+      <li class="item" ref="myli" v-for="(item,index) in data" :key="index">
         <strong>{{item.strong}}</strong>
         <p>{{item.p1}}</p>
         <p>{{item.p2}}</p>
@@ -18,18 +18,34 @@ import PageToggle from '../../PageToggle'
 export default {
   data() {
     return {
-      data: []
+      data: [],
+      color: ['#CC9999', '#009933', '#3399CC', '#99CCCC']
     }
   },
-  components:{
+  components: {
     PageToggle
   },
 
   created() {
     this._initData()
   },
+  updated() {
+    this.addBackground()
+  },
 
   methods: {
+    addBackground() {
+      let mylis = this.$refs.myli
+      let num = 0
+      mylis.forEach((item) => {
+
+        item.style.background = `${this.color[num]}`
+        num++
+        if (num > this.color.length - 1) {
+          num = 0
+        }
+      })
+    },
     _initData() {
       fetch('http://data.iathena.top/web/xsden/initData_s2').then((res) => {
         // fetch('http://localhost:9000/web/xsden/initData_s2').then((res) => {
@@ -68,7 +84,7 @@ export default {
       border 1px solid black
       border-radius 5px 
       padding 5px 
-      box-shadow 3px 3px 5px #999 inset
+      box-shadow 3px 3px 5px #999 
       p
         text-indent 1em
 </style>

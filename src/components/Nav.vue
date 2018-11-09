@@ -5,7 +5,7 @@
       <li class="preview">目录</li>
     </ul>
     <!-- the demo root element -->
-    <ul id="list">
+    <ul id="nav">
       <item class="item" :model="data.unitOne" />
       <!-- <item class="item" :model="data.unitTwo" /> -->
     </ul>
@@ -133,8 +133,9 @@ export default {
             },
           ]
         },
-        flag: false
-      }
+      },
+      flag: true,
+      exclude: ['Unit 1 Communication', 'Part One Reading', 'Part Two Grammar Focus', '名词', 'Part Three Practical Writing', 'Part Four Translation Focus', '词义的选择', '[+]', '[-]']
     }
   },
   components: {
@@ -144,18 +145,16 @@ export default {
     this.$root.eventHub.$on('SHNav', this.SHNav)
   },
   methods: {
-
     SHNav(e) {
-      // console.log('shnav', e.target.innerText);
-      if (e.target.innerText === '[+]' || e.target.innerText === '[-]') {
-        return
-      }
-      if (!this.flag) {
-        this.$el.style.transform = 'translateX(0%)'
-        this.flag = true
-      } else {
-        this.$el.style.transform = 'translateX(-100%)'
-        this.flag = false
+      let target = e.target
+      if (this.exclude.indexOf(target.innerText.trim()) === -1) {
+        if (this.flag) {
+          this.$el.style.transform = 'translateX(0%)'
+          this.flag = false
+        } else {
+          this.$el.style.transform = 'translateX(-100%)'
+          this.flag = true
+        }
       }
     },
 
@@ -186,7 +185,7 @@ export default {
     padding 10px 0 5px 10px
     box-sizing border-box
     border-bottom 1px solid #000
-  #list
+  #nav
     margin-top 10px
     margin-left -5px
     line-height 1.8em

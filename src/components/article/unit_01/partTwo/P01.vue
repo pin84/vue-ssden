@@ -62,10 +62,16 @@
         <p>类似的词还有：equipment, clothing, news, paper, chocolate, grass等。</p>
       </li>
     </ul>
+    <PageToggle />
   </div>
 </template>
+
 <script>
+import PageToggle from '../../../PageToggle'
 export default {
+  components:{
+    PageToggle
+  }
 }
 </script>
 <style lang='stylus' scoped>

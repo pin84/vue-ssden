@@ -2,17 +2,17 @@
   <div class="section">
     <h3>Section 1 Vocabulary</h3>
     <ul class="list">
-      <li class="item" v-for="(item ,index ) in data" :key="index">
+      <li class="item" ref="myli" v-for="(item ,index ) in data" :key="index">
         <strong class="first" @touchstart='ts' @touchend='te' ref="strong">
           {{item.strong}}
           <Audio :mp3_name='item.mp3' />
         </strong>
-        <div class="content" >
+        <div class="content">
           <span>{{item.c1}}</span>
           <p>{{item.zh1}}</p>
         </div>
 
-        <div class="content" >
+        <div class="content">
           <span>{{item.c2}}</span>
           <p>{{item.zh2}}</p>
         </div>
@@ -21,9 +21,9 @@
     <div class="names">
       <h4>Proper Names</h4>
       <ul class="list">
-        <li>1.	Jane [] （女子名）简</li>
-        <li>2.	Manchester [] 曼彻斯特（英格兰西北部城市）</li>
-        <li>3.	Moss Side [] 莫斯赛德（地名）</li>
+        <li>1. Jane [] （女子名）简</li>
+        <li>2. Manchester [] 曼彻斯特（英格兰西北部城市）</li>
+        <li>3. Moss Side [] 莫斯赛德（地名）</li>
       </ul>
     </div>
     <PageToggle />
@@ -72,6 +72,7 @@ export default {
         },
       },
       data: [],
+      color: ['#CC9999', '#009933', '#3399CC', '#99CCCC']
     }
   },
   components: {
@@ -82,12 +83,29 @@ export default {
   mounted() {
     this._initData()
   },
+  updated() {
+    this.addBackground()
+
+  },
+
   methods: {
+    addBackground() {
+      let mylis = this.$refs.myli
+      let num = 0
+      mylis.forEach((item) => {
+
+        item.style.background = `${this.color[num]}`
+        num ++
+        if (num > this.color.length -1) {
+          num = 0
+        }
+      })
+    },
 
     _initData() {
       fetch('http://data.iathena.top/web/xsden/initData_1').then((res) => {
         // fetch('http://localhost:9000/web/xsden/initData_1').then((res) => {
-      // fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
+        // fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
         return res.json()
       }).then((myjson) => {
         this.data = myjson
@@ -145,9 +163,7 @@ export default {
       padding 5px
       box-sizing border-box
       box-shadow 3px 3px 5px #666
-      // background url(../../../assets/img/s1_item_bg.jpg) no-repeat center center 
-      // background-size cover
-      // color #fff
+      background #FFFFCC
       .content
         margin-left 1em
         display flex

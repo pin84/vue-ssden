@@ -8,7 +8,7 @@
       <p>词义选择可以从以下三个方面着手。</p>
     </div>
 
-    <div class="detail" ref="a">
+    <div class="detail" >
       <h3>1. 根据搭配确定词义</h3>
       <ul class="list">
         <li>英语和汉语都具有各自的组合规律或搭配习惯。因此，在翻译中，可以通过词之间的固定关系选择词及确定词义。</li>
@@ -30,7 +30,7 @@
         </li>
       </ul>
     </div>
-    <div class="detail" ref="b">
+    <div class="detail" >
       <h3>2. 根据上下文确定词义</h3>
       <ul class="list">
         <li>在英语中，同一个词在不同的场合往往有不同的含义，因此翻译中要根据语境来判断和确定某个词在特定场合下所具有的含义，以达到翻译的通顺流畅。</li>
@@ -49,7 +49,7 @@
         </li>
       </ul>
     </div>
-    <div class="detail">
+    <div class="detail" >
       <h3>3. 根据词性确定词义</h3>
       <ul class="list">
         <li>很多英文单词有多种词性。遇到这种情况时，如果不弄清楚词性，常常就会将词义搞错，进而影响对原文的正确理解和准确翻译。因此，在翻译中，我们可以根据语法关系来辨别关键词的词性，以便准确地判断词义。</li>
@@ -68,15 +68,17 @@
         </li>
       </ul>
     </div>
+    <PageToggle />
   </div>
 </template>
 
 
 <script>
+import PageToggle from '../../../PageToggle'
 export default {
-  mounted(){
-    // console.log(this.$refs.c.offsetTop)
-  }
+  components:{
+    PageToggle
+  },
 }
 </script>
 

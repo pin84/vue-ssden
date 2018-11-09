@@ -1,6 +1,5 @@
 <template>
   <div id="wrapper" class="wrapper" ref="detail">
-
     <h2 class="title">{{this.title}}</h2>
     <div class="text" v-for="(item,index) in texts" :key="index" @click="_play">
       <span class="text_en">
@@ -52,19 +51,19 @@ export default {
       if (this.CH_EN_flag) {
         text_en.style.opacity = '0'
         text_ch.style.opacity = '1'
-        setTimeout(()=>{
+        setTimeout(() => {
           text_ch.style.display = 'inline'
           text_en.style.display = 'none'
-        },600)
+        }, 600)
         e.target.className = 'CH_EN en'
         this.CH_EN_flag = false
       } else {
         text_ch.style.opacity = '0'
         text_en.style.opacity = '1'
-        setTimeout(()=>{
+        setTimeout(() => {
           text_en.style.display = 'inline'
           text_ch.style.display = 'none'
-        },600)
+        }, 600)
         e.target.className = 'CH_EN ch'
         this.CH_EN_flag = true
       }
@@ -104,8 +103,8 @@ export default {
     },
     _initDataText(keyword) {
       fetch('http://data.iathena.top/web/xsden/initDataText_1').then((res) => {
-      // fetch('http://localhost:9000/web/xsden/initDataText_1').then((res) => {
-      // fetch('http://192.168.3.107:9000/web/xsden/initDataText_1').then((res) => {
+        // fetch('http://localhost:9000/web/xsden/initDataText_1').then((res) => {
+        // fetch('http://192.168.3.107:9000/web/xsden/initDataText_1').then((res) => {
         return res.json()
       }).then((myJson) => {
         this.title = myJson[0].title
@@ -120,16 +119,14 @@ export default {
 
 
 <style lang='stylus' scoped>
-.wrapper
-  // position relative
-  padding 5px 
+#wrapper
   box-sizing border-box
-  background #fff
+  background #f6f6f6
   .title
     width 80%
-    margin 20px auto
     color #fff
     text-align center
+    margin 0 auto
     padding 20px 0
     background url(../../../assets/img/s1_item_bg.jpg) no-repeat center center 
     background-size cover
@@ -138,6 +135,12 @@ export default {
     line-height 24px
     text-indent 2em
     color #000
+    background #FFCC99
+    margin-bottom 10px
+    padding 10px 5px
+    margin-top 20px
+    box-sizing border-box
+    border-radius 10px
     .text_en
       transition 800ms
     .text_ch

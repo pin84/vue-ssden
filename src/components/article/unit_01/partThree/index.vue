@@ -77,13 +77,17 @@
       </p>
       <p>2.	地址在名片上，应该保持一定的完整性。门牌号与街道名不可分开写，必须在同一行，不可断行。</p>
     </div>
+    <PageToggle />
   </div>
 </template>
 
 
 <script>
+import PageToggle from '../../../PageToggle'
 export default {
-
+components:{
+  PageToggle
+}
 }
 </script>
 
@@ -136,7 +140,7 @@ export default {
     .show
       border 1px solid black
       padding 2px
-      background #f7f7f7
+      background #FFCC99
       transform rotate(10deg)
       box-shadow 6px 5px 4px #888
       .top
