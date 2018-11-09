@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <!-- <Cover class="cover" /> -->
-    <div class="book" @click="toggleTopFoot">
+    <Cover class="cover" />
+    <div class="book" @click="toggleTopFoot" ref="book">
       <Top class="top" ref="top" />
       <div class="main">
         <router-view />
@@ -22,7 +22,7 @@ export default {
     return {
       // flag: true,
       TFflag: true,
-      exclude: ['Unit 1 Communication', 'Part One Reading', 'Part Two Grammar Focus', '名词', 'Part Three Practical Writing', 'Part Four Translation Focus', '词义的选择', '[+]', '[-]']
+      exclude: ['Unit 1 Communication', 'Part One Reading', 'Part Two Grammar Focus', '名词', 'Part Three Practical Writing', 'Part Four Translation Focus', '词义的选择', '[+]', '[-]'],
 
     }
   },
@@ -32,16 +32,58 @@ export default {
     Foot,
     Cover,
   },
-  mounted() {
+  created() {
+
+
   },
 
   mounted() {
     this.$root.eventHub.$on('toggleTopFoot', (e) => {  //top.vue
       this.toggleTopFoot(e)
     })
+    this.pageChange()
   },
+  updated() {
 
+  },
   methods: {
+
+    pageChange() {
+      let book = this.$refs.book
+      let start, end
+      let SWidth = document.body.scrollWidth / 5;
+      let curUrl = window.location.href
+
+
+      book.addEventListener('touchstart', (e) => {
+        start = e.touches[0].pageX
+      })
+
+      book.addEventListener('touchend', (e) => {
+        end = e.changedTouches[0].pageX
+        let distance = end - start
+        if (Math.abs(distance) > SWidth) {
+          if (distance > 0) {
+            this.$root.eventHub.$emit('toPreview')
+            console.log('next');
+          } else {
+            console.log('preview');
+            this.$root.eventHub.$emit('toNext')
+          }
+        }
+
+
+
+
+      })
+
+
+
+
+
+
+    },
+
     toggleTopFoot(e) {
       let target = e.target,
         top = this.$refs.top.$el,

@@ -37,7 +37,7 @@ export default new Router({
   routes: [
     {
       path:'/',
-      component: TextA,
+      redirect:'/TextAWaitingforAges!'
     },
     {
       path: '/TextAWaitingforAges!',

@@ -10,12 +10,13 @@ export default {
   data() {
     return {
       routers: ['TextAWaitingforAges!', 'Section1Vocabulary', 'Section2SentenceAnalysis','PartTwoGrammarFocus01','PartTwoGrammarFocus02','BusinessCard','PartFourTranslationFocus01'],
-      previewFlag: true,
-      nextFlag: true,
+      previewFlag: false,
+      nextFlag: false,
       currtUrl: ''
     }
   },
   computed: {
+    
     spanPre: function () {
       return this.routers[this.routers.indexOf(this.currtUrl) - 1]
     },
@@ -23,11 +24,21 @@ export default {
       return this.routers[this.routers.indexOf(this.currtUrl) + 1]
     }
   },
-  created() {
+  mounted(){
     this.currtUrl = window.location.href.split('#')[1].substr(1)
     this.previewFlag = this.currtUrl === this.routers[0] ? false : true
     this.nextFlag = this.currtUrl === this.routers[this.routers.length - 1] ? false : true
+
+    this.$root.eventHub.$on('toPreview',()=>{
+       this.preview()
+    })
+    this.$root.eventHub.$on('toNext',()=>{
+       this.next()
+    })
   },
+  created() {
+  },
+
   methods: {
     preview() {
       let url = this.routers[this.routers.indexOf(this.currtUrl) - 1]
