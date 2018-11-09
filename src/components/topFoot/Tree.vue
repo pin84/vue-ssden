@@ -54,8 +54,6 @@ export default {
       this.$el.style.background = '#6699CC'
     },
     toRouter(e) {
-      console.log(e.target.innerText);
-      
       this.$el.style.background = ''
       let url = e.target.innerText.replace(/\s/g, '')
       if (this.excludeUrl.indexOf(url) !== -1) {
@@ -81,7 +79,9 @@ export default {
      
       }
 
+      this.$root.eventHub.$emit('modCurrentUrl',`${url}`) //pageToglle
       this.$router.push(`/${url}`)
+
     },
 
     toggle: function () {

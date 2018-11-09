@@ -23,14 +23,22 @@ export default {
     spanTNext: function () {
       return this.routers[this.routers.indexOf(this.currentUrl) + 1]
     }
+    
   },
   mounted() {
     this.currentUrl = window.location.href.split('#')[1].substr(1)
+    console.log(this.currentUrl);
+    
     this.$root.eventHub.$on('toPreview', () => {
       this.preview()
     })
     this.$root.eventHub.$on('toNext', () => {
       this.next()
+    })
+
+    this.$root.eventHub.$on('modCurrentUrl',(url)=>{
+      console.log(url);
+      
     })
   },
   created() {
