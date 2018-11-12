@@ -10,25 +10,28 @@ export default {
   data() {
     return {
       routers: ['TextAWaitingforAges!', 'Section1Vocabulary', 'Section2SentenceAnalysis', 'PartTwoGrammarFocus01', 'PartTwoGrammarFocus02', 'BusinessCard', 'PartFourTranslationFocus01'],
-      previewFlag: false,
-      nextFlag: false,
       currentUrl: ''
     }
   },
   computed: {
-
     spanPre: function () {
       return this.routers[this.routers.indexOf(this.currentUrl) - 1]
     },
     spanTNext: function () {
       return this.routers[this.routers.indexOf(this.currentUrl) + 1]
+    },
+    previewFlag: function () {
+      return this.currentUrl === this.routers[0] ? false : true
+    },
+    nextFlag: function () {
+      return this.currentUrl === this.routers[this.routers.length - 1] ? false : true
     }
-    
+
+
   },
   mounted() {
     this.currentUrl = window.location.href.split('#')[1].substr(1)
-    console.log(this.currentUrl);
-    
+
     this.$root.eventHub.$on('toPreview', () => {
       this.preview()
     })
@@ -36,14 +39,9 @@ export default {
       this.next()
     })
 
-    this.$root.eventHub.$on('modCurrentUrl',(url)=>{
-      console.log(url);
-      
+    this.$root.eventHub.$on('modCurrentUrl', (url) => {  // tree.vue
+      this.currentUrl = url
     })
-  },
-  created() {
-    this.previewFlag = this.currentUrl === this.routers[0] ? false : true
-    this.nextFlag = this.currentUrl === this.routers[this.routers.length - 1] ? false : true
   },
 
   methods: {
@@ -63,7 +61,6 @@ export default {
       }
       this.$router.push(`${url}`)
       this.currentUrl = window.location.href.split('#')[1].substr(1)
-
     }
   }
 }
@@ -77,13 +74,13 @@ export default {
   background #fff
   display flex
   justify-content space-between
-  border-top 1px solid #000
   color green
   margin-top 20px
   box-sizing border-box
   font-size 1.8rem
+  background #CCFFCC
   .preview, .next
-    width 40%
+    width 45%
     padding 20px 0
     white-space nowrap
     text-overflow ellipsis

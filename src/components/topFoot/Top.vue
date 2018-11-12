@@ -24,7 +24,6 @@ export default {
     },
     liClickEnd(e) {
       let target = e.target
-      console.log(target);
       
       // if (target.tagName !== 'LI') {
       //   target.parentNode.style.background = ''

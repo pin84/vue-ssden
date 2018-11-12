@@ -79,7 +79,7 @@ export default {
      
       }
 
-      this.$root.eventHub.$emit('modCurrentUrl',`${url}`) //pageToglle
+      this.$root.eventHub.$emit('modCurrentUrl',`${url}`) //pageToggle
       this.$router.push(`/${url}`)
 
     },

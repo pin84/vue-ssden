@@ -133,6 +133,7 @@ export default {
         top 0
         left 0
         width 80%
+        z-index 2
     .top, .foot
       transition 800ms
       transform translateY(-100%)
