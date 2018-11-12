@@ -19,7 +19,7 @@ export default {
   data() {
     return {
       data: [],
-      color: ['#CC9999', '#009933', '#3399CC', '#99CCCC']
+      color: ['#99CCFF', '#99CCCC', '#66CCCC', '#009999']
     }
   },
   components: {
