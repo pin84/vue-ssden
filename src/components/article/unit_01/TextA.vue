@@ -22,6 +22,7 @@
 <script>
 import Audio from '../../Audio'
 import PageToggle from '../../PageToggle'
+import url from '../../../config/env'
 export default {
   data() {
     return {
@@ -43,6 +44,7 @@ export default {
 
   created() {
     this._initDataText()
+    
   },
   methods: {
     CH_EN(e) {
@@ -102,9 +104,7 @@ export default {
       }
     },
     _initDataText(keyword) {
-      fetch('http://data.iathena.top/web/xsden/initDataText_1').then((res) => {
-        // fetch('http://localhost:9000/web/xsden/initDataText_1').then((res) => {
-        // fetch('http://192.168.3.107:9000/web/xsden/initDataText_1').then((res) => {
+      fetch(`http://${url.env}/web/xsden/initDataText_1`).then((res) => {
         return res.json()
       }).then((myJson) => {
         this.title = myJson[0].title

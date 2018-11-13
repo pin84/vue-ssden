@@ -1,21 +1,15 @@
 <template>
   <div id="app">
-    <!-- <Index /> -->
-    <!-- <FileBtn /> -->
     <Book />
   </div>
 </template>
 
 <script>
-import Index from './components/index.vue'
-import FileBtn from './components/FileBtn.vue'
-import Book from './components/Book'
+import Book from './components'
 
 export default {
   name: 'app',
   components: {
-    Index,
-    FileBtn,
     Book
   }
 }

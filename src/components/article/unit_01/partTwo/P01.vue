@@ -5,7 +5,7 @@
       名词可分为专有名词和普通名词，普通名词又可分为个体名词、集体名词、物质名词和抽象名词。从名词是否可以计数来看，普通名词又可分为可数名词和不可数名词。
     </div>
 
-    <ul class="list">
+    <!-- <ul class="list">
       <li class="item">
         <h4>1.1 专有名词</h4>
         <p>专有名词是个人、国家、地方、机构、组织等专有的名称，如Bill Clinton, China, Hangzhou, Zhejiang University等。专有名词的首字母要大写，一般不用冠词。</p>
@@ -61,16 +61,47 @@
         <p>2) I have one or two useful pieces of information to pass on to you.</p>
         <p>类似的词还有：equipment, clothing, news, paper, chocolate, grass等。</p>
       </li>
+    </ul> -->
+    <ul class="list">
+      <li class="item" v-for="(item,index) in titles" :key="index">
+        <h4>{{item}}</h4>
+        <p v-for="(p,index) in datas[index]" :key="index" >
+          {{p}}
+        </p>
+      </li>
     </ul>
-    <!-- <PageToggle /> -->
   </div>
 </template>
 
 <script>
-import PageToggle from '../../../PageToggle'
+import url from '../../../../config/env'
 export default {
-  components:{
-    PageToggle
+  data() {
+    return {
+      datas:[],
+      titles:[],
+    }
+  },
+
+  mounted() {
+    this.initData_p2_01()
+  },
+  methods: {
+    initData_p2_01() {
+      
+      fetch(`http://${url.env}/web/xsden/initP2_01`).then(res => {
+        return res.json()
+      }).then(myjson => {
+        
+        //拿出title 放入新的数组 并把 title 和 id 从 myjson 中删除
+        myjson.forEach(element => {
+          this.titles.push(element.title)
+          delete element.id
+          delete element.title
+        });
+        this.datas = myjson
+      })
+    }
   }
 }
 </script>

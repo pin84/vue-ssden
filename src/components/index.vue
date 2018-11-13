@@ -1,85 +1,151 @@
 <template>
-  <form class="wrapper" ref="imgForm">
-    <div class="main">
-      <div class="show">
-        <img src="" alt="">
+  <div class="wrapper">
+    <!-- <Cover class="cover" /> -->
+    <div class="book" @click="toggleTopFoot" ref="book">
+      <Top class="top" ref="top" />
+      <div class="main">
+        <router-view />
+        <Nav class="nav" />
       </div>
-      <div class="btn">
-        <FileBtn class="choosefile" :flag=false  ref="fileBtn" />
-        <Btn class="upload" msg='上传' :flag=true  ref="upload"/>
-      </div>
+      <!-- <Foot class="foot" ref="foot" /> -->
     </div>
-    <div class="preview" ref="preview">
-      <span>预览区</span>
-    </div>
-  </form>
+    <PageToggle  id="pageToggle"/>
+  </div>
 </template>
 <script>
-import FileBtn from './FileBtn'
-import Btn from './Btn'
+
+import Nav from './Nav'
+import Top from './topFoot/Top'
+import Foot from './topFoot/Foot'
+import Cover from './topFoot/Cover'
+import PageToggle from './PageToggle'
 export default {
+  data() {
+    return {
+      // flag: true,
+      TFflag: true,
+      exclude: ['Unit 1 Communication', 'Part One Reading', 'Part Two Grammar Focus', '名词', 'Part Three Practical Writing', 'Part Four Translation Focus', '词义的选择', '[+]', '[-]'],
+
+    }
+  },
   components: {
-    FileBtn,
-    Btn
+    Nav,
+    Top,
+    Foot,
+    Cover,
+    PageToggle
   },
-  mounted(){
-    this.getdata()
+  created() {
+
+
   },
 
-  methods:{
-    getdata(){
-      // let upload = this.$refs.preview
-      let imgForm = this.$refs.fileBtn.$el
+  mounted() {
+    this.$root.eventHub.$on('toggleTopFoot', (e) => {  //top.vue
+      this.toggleTopFoot(e)
+    })
+    // this.pageChange()
+  },
+  updated() {
 
-      imgForm.addEventListener('change',()=>{
-        let formData = new FormData()
-        formData.append('userfile',imgForm.firstChild.files[0])
+  },
+  methods: {
 
-        // console.log(formData.getAll('userfile'));
-        
+    pageChange() {
+      let book = this.$refs.book
+      let start, end
+      let SWidth = document.body.scrollWidth / 5;
+      let curUrl = window.location.href
+
+
+      book.addEventListener('touchstart', (e) => {
+        start = e.touches[0].pageX
       })
-      
+
+      book.addEventListener('touchend', (e) => {
+        end = e.changedTouches[0].pageX
+        let distance = end - start
+        if (Math.abs(distance) > SWidth) {
+          if (distance > 0) {
+            this.$root.eventHub.$emit('toPreview')
+            console.log('next');
+          } else {
+            console.log('preview');
+            this.$root.eventHub.$emit('toNext')
+          }
+        }
+
+
+
+
+      })
+
+
+
+
+
+
     },
 
-    
+    toggleTopFoot(e) {
+      let target = e.target,
+        top = this.$refs.top.$el
+        // foot = this.$refs.foot.$el
+
+      if (target.parentNode.id !== 'isToggle' || target.className.split(' ')[1] === 'nav') {
+        if (this.TFflag && target.className.split(' ')[0] !== 'audio' && target.className !== 'symbol' && target.className.split(' ')[0] !== 'CH_EN' && target.className !== 'preview' && target.className !== 'next') {
+          top.style.transform = `translateY(0%)`
+          // foot.style.transform = `translateY(0%)`
+          this.TFflag = false
+        } else {
+          top.style.transform = `translateY(-100%)`
+          // foot.style.transform = `translateY(100%)`
+          this.TFflag = true
+        }
+      }
+
+
+    },
   }
+
 }
 </script>
 <style lang='stylus' scoped>
 .wrapper
-  display flex
-  .main
-    width 500px
-    height 400px
-    border 1px solid blue 
-    margin-right 10px 
-    box-sizing border-box
-    .show
-      width 100%
-      height 80%
-      border 1px solid pink
-      box-sizing border-box
-    .btn
-      display flex
-      height 20%
-      justify-content center
-      align-items center
-      .upload
-        margin-left 60px
-      .choosefile.lab
-        background red
-  .preview
-    width 150px
-    height 120px
-    border 1px solid blue
+  width 100%
+  .cover
+    position fixed 
+    width 100%
+    height 100%
+    top 0
+    left 0
+    right 0
+    bottom 0
+    z-index 2
+  .book
     position relative
-    span 
-      position absolute 
-      bottom -25px
+    padding-bottom 70px
+    .main
+      position relative
+      box-sizing border-box
+      .nav
+        position fixed
+        top 0
+        left 0
+        width 80%
+        z-index 2
+    .top, .foot
+      transition 800ms
+      transform translateY(-100%)
+      position fixed
       left 0
-      font-size 10px
-      color #fff
-      background gray
-      padding 3px 10px
-      border-radius 10px
+      z-index 2
+    .foot
+      bottom 0
+      transform translateY(100%)
+  #pageToggle
+    position fixed
+    left 0
+    bottom 0
+
 </style>

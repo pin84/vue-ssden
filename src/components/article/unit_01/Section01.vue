@@ -34,6 +34,7 @@
 <script>
 import Audio from '../../Audio'
 import PageToggle from '../../PageToggle'
+import url from '../../../config/env'
 export default {
   data() {
     return {
@@ -103,9 +104,7 @@ export default {
     },
 
     _initData() {
-      fetch('http://data.iathena.top/web/xsden/initData_1').then((res) => {
-        // fetch('http://localhost:9000/web/xsden/initData_1').then((res) => {
-        // fetch('http://192.168.3.107:9000/web/xsden/initData_1').then((res) => {
+      fetch(`http://${url.env}/web/xsden/initData_1`).then((res) => {
         return res.json()
       }).then((myjson) => {
         this.data = myjson

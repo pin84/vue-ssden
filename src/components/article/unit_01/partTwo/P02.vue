@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <h3 class="title">2. 名词的格</h3>
-    <ul class="list">
+    <!-- <ul class="list">
       <li class="item">
         <h4>2.1 名词所有格的构成</h4>
         <p>英语中，有很多名词都是由名词加-’s来表示所有关系的，此形式称为名词所有格，其构成主要有以下几种情况：</p>
@@ -42,19 +42,48 @@
         <p>1)	I’m going to the barber’s to get my hair cut.</p>
         <p>2)	They’re freshly baked. I fetched them from the baker’s this morning.</p>
       </li>
+    </ul> -->
+    <ul class="list">
+      <li class="item" v-for="(title ,index ) in titles" :key="index">
+        <h4>{{title}}</h4>
+        <p v-for="(p,index) in datas[index]" :key="index">
+          {{p}}
+        </p>
+      </li>
     </ul>
-    <!-- <PageToggle /> -->
   </div>
 
 </template>
 
 
 <script>
-import PageToggle from '../../../PageToggle'
+import url from '../../../../config/env'
 export default {
-components:{
-  PageToggle
-}
+  data() {
+    return {
+      titles: [],
+      datas: []
+    }
+  },
+
+  mounted() {
+    this.initData_p2_02()
+  },
+  methods: {
+    initData_p2_02() {
+      fetch(`http://${url.env}/web/xsden/initP2_02`).then(res => {
+        return res.json()
+      }).then(myjson => {
+        console.log(myjson);
+        myjson.forEach(item => {
+          this.titles.push(item.title)
+          delete item.id
+          delete item.title
+        })
+        this.datas = myjson
+      })
+    }
+  }
 }
 </script>
 
