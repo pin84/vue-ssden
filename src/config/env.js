@@ -4,6 +4,6 @@ dev= '192.168.3.107:9000',
 home = 'localhost:9000'
 
 export default {
-  env: dev
+  env: production
 }
 
