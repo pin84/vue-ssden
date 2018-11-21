@@ -3,10 +3,12 @@
     <h3>Section 1 Vocabulary</h3>
     <ul class="list">
       <li class="item" ref="myli" v-for="(item ,index ) in data" :key="index">
-        <strong class="first" @touchstart='ts' @touchend='te' ref="strong">
+        <strong class="first" ref="strong">
           {{item.strong}}
-          <Audio :mp3_name='item.mp3' />
         </strong>
+        <span class="audio_box" @click="play">
+          <Audio class="audio" :mp3_name='item.mp3' />
+        </span>
         <div class="content">
           <span>{{item.c1}}</span>
           <p>{{item.zh1}}</p>
@@ -32,7 +34,7 @@
 
 
 <script>
-import Audio from '../../Audio'
+import Audio from '../../Audio_1'
 import PageToggle from '../../PageToggle'
 import url from '../../../config/env'
 export default {
@@ -96,8 +98,8 @@ export default {
       mylis.forEach((item) => {
 
         item.style.background = `${this.color[num]}`
-        num ++
-        if (num > this.color.length -1) {
+        num++
+        if (num > this.color.length - 1) {
           num = 0
         }
       })
@@ -110,14 +112,12 @@ export default {
         this.data = myjson
       })
     },
-
-    ts(e) {
-      e.target.style.background = '#6699CC'
-    },
-    te(e) {
-      e.target.style.background = ''
+    
+    play(e) {
+      let audio = e.target.children[0]
       this.$root.eventHub.$emit('stopPlay')
-      e.target.children[0].play()
+      e.target.className = 'audio stop'
+      audio.play()
     }
   }
 
@@ -131,7 +131,6 @@ export default {
   background #f5f5f5
   padding 5px
   box-sizing border-box
-  
   h3
     color #fff
     width 80%
@@ -141,7 +140,6 @@ export default {
     background url(../../../assets/img/s1_item_bg.jpg) no-repeat center center 
     background-size cover
     transform skewX(10deg)
-
     &::before
       content ''
       display inline-block
@@ -152,21 +150,17 @@ export default {
       vertical-align top
   .list
     position relative
-    line-height 24px
     .item
-      position relative
-      border 1px solid black
       margin-bottom 10px
       border-radius 5px
-      background #fff
       padding 5px
       box-sizing border-box
       box-shadow 3px 3px 5px #666
-      background #FFFFCC
+      .audio
+        display inline-block
+        vertical-align top
       .content
         margin-left 1em
-        display flex
-        flex-direction column
         p
           text-indent 1em
   .names

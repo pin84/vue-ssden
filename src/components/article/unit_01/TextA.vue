@@ -9,7 +9,10 @@
         {{item.text_ch}}
       </span>
       <span class="CH_EN" @click="CH_EN"></span>
-      <span class="audio" ref="audiobox">
+      <!-- <span class="audio" ref="audiobox">
+        <Audio :mp3_name='item.mp3' />
+      </span> -->
+      <span>
         <Audio :mp3_name='item.mp3' />
       </span>
     </div>
@@ -20,7 +23,7 @@
 
 
 <script>
-import Audio from '../../Audio'
+import Audio from '../../Audio_1'
 import PageToggle from '../../PageToggle'
 import url from '../../../config/env'
 export default {
@@ -148,16 +151,6 @@ export default {
       display none
     .audio
       display inline-block
-      width 24px
-      height 24px
-      padding 0px 5px
-      background url(../../../assets/audio.png) no-repeat center
-      z-index 9999
-      vertical-align top
-      &.start
-        background url(../../../assets/audio.png) no-repeat center
-      &.stop
-        background url(../../../assets/audio-off.png) no-repeat center
     .CH_EN
       display inline-block
       transition 800ms

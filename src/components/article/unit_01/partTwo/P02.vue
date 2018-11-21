@@ -74,7 +74,6 @@ export default {
       fetch(`http://${url.env}/web/xsden/initP2_02`).then(res => {
         return res.json()
       }).then(myjson => {
-        console.log(myjson);
         myjson.forEach(item => {
           this.titles.push(item.title)
           delete item.id

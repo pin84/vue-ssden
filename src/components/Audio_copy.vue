@@ -1,6 +1,5 @@
 <template>
-
-  <audio ref="audio" @ended="resetAudioBoxImg">
+  <audio ref="audio" @ended="resetAudioBoxImg"  @audioPlay="aaa">
     <source :src="require('../assets/mp3/'+mp3_name+'.mp3')">
   </audio>
 </template>
@@ -24,12 +23,20 @@ export default {
   mounted() {
 
     this.$root.eventHub.$on('stopPlay', () => {
+
       this.stopPlay()
     })
   },
 
   methods: {
+
+    aaa(){
+      console.log('audioPlay');
+      
+    },
     stopPlay() {
+      console.log('stopPlay');
+      
       let audio = this.$refs.audio
       if (audio) {
         audio.pause()
@@ -39,6 +46,8 @@ export default {
     },
 
     resetAudioBoxImg() {
+      console.log('resetAudioBoxImg');
+      
       this.$el.parentNode.className = 'audio start'
     },
   }

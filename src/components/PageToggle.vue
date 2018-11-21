@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
-    <span class="preview" @click="preview" v-if="previewFlag" ref="preview"> {{spanPre}}</span>
-    <span class="next" @click="next" v-if="nextFlag">{{spanTNext}}</span>
+    <span class="preview" @click="preview" v-if="previewFlag" ref="preview">上一章</span>
+    <span class="next" @click="next" v-if="nextFlag">下一章</span>
   </div>
 </template>
 
@@ -80,13 +80,14 @@ export default {
   font-size 1.8rem
   background #CCFFCC
   .preview, .next
-    width 45%
+    width 35%
     padding 20px 0
     white-space nowrap
     text-overflow ellipsis
     overflow hidden
-    &.next
-      padding-right 20px
+    text-align center
+    // &.next
+    //   padding-right 20px
   .preview::before, .next::after
     display inline-block
     content ''
