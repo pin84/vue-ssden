@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <!-- <Cover class="cover" /> -->
+    <Cover class="cover" />
     <div class="book" @click="toggleTopFoot" ref="book">
       <Top class="top" ref="top" />
       <div class="main">
