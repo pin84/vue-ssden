@@ -4,7 +4,9 @@
     <div class="book" @click="toggleTopFoot" ref="book">
       <Top class="top" ref="top" />
       <div class="main">
-        <router-view />
+        <keep-alive>
+          <router-view />
+        </keep-alive>
         <Nav class="nav" />
       </div>
       <!-- <Foot class="foot" ref="foot" /> -->
